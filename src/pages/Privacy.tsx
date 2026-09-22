@@ -99,10 +99,10 @@ export default function Privacy() {
                       <table className="w-full text-left">
                         <thead>
                           <tr className="border-b border-line bg-cream">
-                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">Name</th>
-                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">Type</th>
-                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">Purpose</th>
-                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">Data</th>
+                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">{p.thName}</th>
+                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">{p.thType}</th>
+                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">{p.thPurpose}</th>
+                            <th className="px-5 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-clay">{p.thData}</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-line">

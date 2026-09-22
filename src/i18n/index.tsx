@@ -28,9 +28,8 @@ import {
   Smartphone,
   type LucideIcon,
 } from "lucide-react";
-import { EL, EN, type Dict } from "./translations";
-export type { Lang } from "./translations";
-type Lang = "el" | "en";
+import { EL, EN, type Dict, type Lang } from "./translations";
+export type { Lang };
 import * as EN_DATA from "../data/content";
 import * as EL_DATA from "../data/content.el";
 

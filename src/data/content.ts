@@ -51,9 +51,9 @@ export const MENU: NavItem[] = [
       { label: "Web Dashboard", to: "/platform/dashboard", desc: "GIS maps, heatmaps and forecasts" },
       { label: "Mobile App", to: "/platform/mobile-app", desc: "Alerts and crowdsourcing on the go" },
       { label: "LLM Interface", to: "/platform/intelligence", desc: "Ask the twin anything" },
+      { label: "Indicators", to: "/indicators", desc: "34 sustainability indicators across 10 categories" },
     ],
   },
-  { label: "Indicators", to: "/indicators" },
   {
     label: "Resources",
     children: [
@@ -62,6 +62,7 @@ export const MENU: NavItem[] = [
       { label: "References", to: "/resources/references", desc: "Standards, papers and providers" },
     ],
   },
+  { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
 export const ABOUT_NAV: NavChild[] = MENU[1].children!;
@@ -77,7 +78,6 @@ export interface Island {
 }
 export const ISLANDS: Island[] = [
   { name: "Ithaca", greek: "Ithaki", score: 81, note: "Low-impact seasonality and strong community stewardship of heritage assets" },
-  { name: "Kythira", greek: "Kythera", score: 78, note: "Remote sentinel of the network — rich in renewable-energy potential and native habitat" },
   { name: "Paxi", greek: "Paxos", score: 74, note: "Compact land mass rewards careful visitor distribution and marine protection" },
   { name: "Kefalonia", greek: "Kefalonia", score: 66, note: "Dispersed seasonality supports balance; protected Caretta-caretta nesting sites monitored" },
   { name: "Lefkada", greek: "Lefkada", score: 63, note: "Coastal dune and Posidonia meadow conservation alongside managed beach access" },
@@ -448,7 +448,7 @@ export const FUNDING = [
   { k: "Applicant", v: "Ionian University — ELKE-IP, Special Account for Research Funds" },
   { k: "Budget", v: "€250,000 — co-financed by the European Regional Development Fund" },
   { k: "Duration", v: "1 January 2027 → 30 September 2029 (33 months)" },
-  { k: "Region", v: "Corfu · Paxi · Lefkada · Kefalonia · Ithaca · Zakynthos · Kythira" },
+  { k: "Region", v: "Corfu · Paxi · Lefkada · Kefalonia · Ithaca · Zakynthos" },
 ];
 
 /* ── Related projects ───────────────────────────────────────────────── */

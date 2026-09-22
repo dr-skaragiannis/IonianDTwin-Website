@@ -3,9 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { useT, useC } from "../i18n";
 import { useSubNav } from "../i18n/menu";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
+import crowdImg from "../assets/crowd.jpg";
 
-const CROWD_IMG =
-  "https://images.pexels.com/photos/5232333/pexels-photo-5232333.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200";
+const CROWD_IMG = crowdImg;
 
 /** Higher score = stronger sustainability */
 function scoreColor(s: number) {

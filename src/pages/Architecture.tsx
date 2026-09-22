@@ -4,6 +4,7 @@ import { useT } from "../i18n";
 import { useSubNav } from "../i18n/menu";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
 import ArchitectureExplorer from "../components/ArchitectureExplorer";
+import sensorStationImg from "../assets/sensor-station.jpg";
 
 const TRAIT_ICONS = [Database, Radio, Activity, EyeOff];
 
@@ -41,7 +42,7 @@ export default function Architecture() {
           <Reveal>
             <figure className="relative overflow-hidden rounded-2xl border border-ink/12 shadow-[0_30px_60px_-28px_rgba(19,18,16,0.45)]">
               <img
-                src="./images/sensor-station.jpg"
+                src={sensorStationImg}
                 alt={p.figTag}
                 className="aspect-[4/3] w-full object-cover"
                 loading="lazy"

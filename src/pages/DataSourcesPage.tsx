@@ -78,9 +78,9 @@ export default function DataSourcesPage() {
           <Reveal delay={220}>
             <p className="mt-6 max-w-2xl text-[13px] leading-relaxed text-fog">
               {p.note}{" "}
-              <a href="#/about/architecture" className="text-claydeep underline underline-offset-2">
+              <Link to="/about/architecture" className="text-claydeep underline underline-offset-2">
                 {p.noteLink}
-              </a>
+              </Link>
             </p>
           </Reveal>
         </Container>

@@ -15,6 +15,7 @@ import Indicators from "./pages/Indicators";
 import DataSourcesPage from "./pages/DataSourcesPage";
 import RelatedProjectsPage from "./pages/RelatedProjectsPage";
 import References from "./pages/References";
+import BlogPage from "./pages/BlogPage";
 import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -48,6 +49,7 @@ export default function App() {
             <Route path="/resources/data-sources" element={<DataSourcesPage />} />
             <Route path="/resources/related-projects" element={<RelatedProjectsPage />} />
             <Route path="/resources/references" element={<References />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

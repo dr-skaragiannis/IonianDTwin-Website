@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { ArrowUpRight, ChevronDown, Clock, Mail, MapPin, ShieldAlert } from "lucide-react";
+import {
+  ArrowUpRight,
+  Building2 as BuildingIcon,
+  ChevronDown,
+  Clock,
+  Globe,
+  Mail,
+  Mail as MailIcon,
+  MapPin,
+  ShieldAlert,
+  Users as UsersIcon,
+} from "lucide-react";
 import { useT } from "../i18n";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
 
@@ -11,7 +22,6 @@ function AudienceIcon({ name }: { name: (typeof AUDIENCE_ICONS)[number] }) {
   if (name === "building") return <BuildingIcon {...p} />;
   return <MailIcon {...p} />;
 }
-import { Building2 as BuildingIcon, Mail as MailIcon, Users as UsersIcon } from "lucide-react";
 
 export default function Contact() {
   const t = useT();
@@ -32,6 +42,7 @@ export default function Contact() {
         meta={p.meta}
       />
 
+      {/* Info Cards */}
       <section className="border-b border-line bg-cream py-24 md:py-28">
         <Container>
           <div className="grid gap-5 md:grid-cols-3">
@@ -53,6 +64,12 @@ export default function Contact() {
                     <Mail className="h-3.5 w-3.5 shrink-0 text-clay" strokeWidth={1.75} />
                     <a href={`mailto:${t.footer.email}`} className="link-underline">
                       {t.footer.email}
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Globe className="h-3.5 w-3.5 shrink-0 text-clay" strokeWidth={1.75} />
+                    <a href="https://ionio.gr" target="_blank" rel="noreferrer" className="link-underline">
+                      ionio.gr
                     </a>
                   </li>
                   <li className="flex items-center gap-3">
@@ -106,6 +123,7 @@ export default function Contact() {
         </Container>
       </section>
 
+      {/* DPO Protection of Personal Data */}
       <section className="border-b border-line bg-paper py-24 md:py-28">
         <Container className="max-w-3xl">
           <SectionHead align="center" eyebrow={p.dpoTag} title={p.dpoTitle} />
@@ -129,7 +147,8 @@ export default function Contact() {
         </Container>
       </section>
 
-      <section className="bg-paper py-24 md:py-28">
+      {/* FAQ */}
+      <section className="bg-cream py-24 md:py-28">
         <Container className="max-w-3xl">
           <SectionHead align="center" eyebrow={p.faqEyebrow} title={p.faqTitle} />
           <div className="mt-12">

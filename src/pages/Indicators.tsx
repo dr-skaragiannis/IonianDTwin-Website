@@ -1,4 +1,6 @@
+import { Gauge as GaugeIcon, Ruler, Sigma } from "lucide-react";
 import { useT } from "../i18n";
+import { useSubNav } from "../i18n/menu";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
 import IndicatorExplorer from "../components/IndicatorExplorer";
 
@@ -10,7 +12,6 @@ function StepIcon({ name }: { name: (typeof STEP_ICONS)[number] }) {
   if (name === "sigma") return <Sigma {...common} />;
   return <GaugeIcon {...common} />;
 }
-import { Gauge as GaugeIcon, Ruler, Sigma } from "lucide-react";
 
 function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: string; alert: string } }) {
   const value = 74;
@@ -59,7 +60,12 @@ export default function Indicators() {
     <main>
       <PageHero
         eyebrow={p.eyebrow}
-        trail={[{ label: t.nav.home, to: "/" }, { label: t.nav.indicators }]}
+        trail={[
+      { label: t.nav.home, to: "/" },
+      { label: t.nav.platform, to: "/platform" },
+      { label: t.indicators.crumb },
+    ]}
+    subNav={useSubNav("/platform")}
         title={
           <>
             {p.titleA}

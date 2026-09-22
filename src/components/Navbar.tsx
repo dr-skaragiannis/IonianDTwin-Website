@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
-import { useT } from "../i18n";
+import { useLang, useT } from "../i18n";
 import { useMenu } from "../i18n/menu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import PaletteSwitcher from "./PaletteSwitcher";
@@ -29,6 +29,7 @@ function ScrollProgress() {
 }
 
 export default function Navbar() {
+  const { lang } = useLang();
   const t = useT();
   const menu = useMenu();
   const [scrolled, setScrolled] = useState(false);
@@ -38,7 +39,7 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -63,10 +64,10 @@ export default function Navbar() {
     <>
       <ScrollProgress />
 
-      {/* Announcement bar */}
+      {/* Top Announcement bar - collapses smoothly on scroll */}
       <div
-        className={`fixed inset-x-0 top-0 z-50 overflow-hidden bg-ink2 text-cream transition-all duration-500 ${
-          scrolled ? "max-h-0" : "max-h-12"
+        className={`fixed inset-x-0 top-0 z-50 overflow-hidden bg-ink2 text-cream transition-all duration-500 ease-in-out ${
+          scrolled ? "max-h-0 opacity-0 pointer-events-none" : "max-h-12 opacity-100"
         }`}
       >
         <Container className="flex h-9 items-center justify-between gap-4">
@@ -86,31 +87,48 @@ export default function Navbar() {
         </Container>
       </div>
 
-      {/* Main nav */}
+      {/* Main navigation header: transitions to dark background, compact height, and shadow with animations */}
       <header
-        className={`fixed inset-x-0 z-40 transition-all duration-500 ${
+        className={`fixed inset-x-0 z-40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
-            ? "top-0 border-b border-line bg-cream/85 backdrop-blur-xl"
-            : "top-9 border-b border-transparent bg-transparent"
+            ? "top-0 border-b border-cream/10 bg-ink2/95 text-cream backdrop-blur-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] py-0"
+            : "top-9 border-b border-transparent bg-transparent text-ink py-1"
         }`}
       >
         <Container>
-          <div className="flex h-16 items-center justify-between gap-4">
-            <Link to="/" className="group flex items-center gap-3" aria-label="IonianDTwin home">
-              <LogoMark className="h-8 w-8 shrink-0 text-ink transition-transform duration-500 group-hover:rotate-[8deg]" />
+          <div
+            className={`flex items-center justify-between gap-4 transition-all duration-500 ${
+              scrolled ? "h-14" : "h-16"
+            }`}
+          >
+            {/* Logo and Brand Name */}
+            <Link to="/" className="group flex items-center gap-2.5" aria-label="IonianDTwin home">
+              <LogoMark
+                dark={scrolled}
+                className={`shrink-0 transition-all duration-500 group-hover:scale-105 ${
+                  scrolled ? "h-7 w-7" : "h-9 w-9"
+                }`}
+              />
               <span className="hidden flex-col leading-none sm:flex">
-                <span className="display text-[17px] font-semibold tracking-tight text-ink">
+                <span
+                  className={`display font-semibold tracking-tight transition-all duration-500 ${
+                    scrolled ? "text-[16px] text-cream" : "text-[18px] text-ink"
+                  }`}
+                >
                   IonianDTwin
                 </span>
-                <span className="mt-1 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-fog">
-                  {t.home.heroRegion}
+                <span
+                  className={`mt-0.5 whitespace-nowrap font-sans text-[10.5px] font-normal tracking-tight transition-colors duration-500 ${
+                    scrolled ? "text-cream/60" : "text-smoke"
+                  }`}
+                >
+                  {lang === "el" ? "Ιόνια Νησιά" : "Ionian Islands"}
                 </span>
               </span>
             </Link>
 
-            {/* Desktop nav — 2xl threshold: at 120% root zoom the six Greek
-                labels plus logo and controls do not fit below 1536px */}
-            <nav className="hidden items-center gap-4 2xl:flex 2xl:gap-5" aria-label="Primary">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden items-center gap-3.5 2xl:flex 2xl:gap-5" aria-label="Primary">
               {menu.map((item) =>
                 item.children ? (
                   <div
@@ -122,9 +140,13 @@ export default function Navbar() {
                     <button
                       onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
                       aria-expanded={openMenu === item.label}
-                      className={`flex items-center gap-1.5 whitespace-nowrap py-2 text-[0.9375rem] font-medium tracking-tight transition-colors ${
+                      className={`flex items-center gap-1.5 whitespace-nowrap py-2 font-medium tracking-tight transition-colors duration-300 ${
+                        scrolled ? "text-[0.875rem]" : "text-[0.9375rem]"
+                      } ${
                         item.children.some((c) => childActive(c.to))
-                          ? "text-claydeep"
+                          ? "text-clay font-semibold"
+                          : scrolled
+                          ? "text-cream/75 hover:text-cream"
                           : "text-smoke hover:text-ink"
                       }`}
                     >
@@ -136,25 +158,39 @@ export default function Navbar() {
                         strokeWidth={2}
                       />
                     </button>
+
+                    {/* Dropdown menu */}
                     <div
-                      className={`absolute left-1/2 top-full z-50 w-[19rem] -translate-x-1/2 pt-2 transition-all duration-300 ${
+                      className={`absolute left-1/2 top-full z-50 w-[19.5rem] -translate-x-1/2 pt-2 transition-all duration-300 ${
                         openMenu === item.label
                           ? "visible translate-y-0 opacity-100"
-                          : "invisible translate-y-2 opacity-0"
+                          : "invisible translate-y-2 opacity-0 pointer-events-none"
                       }`}
                     >
-                      <div className="overflow-hidden rounded-2xl border border-line bg-paper p-2 shadow-[0_24px_48px_-16px_rgba(19,18,16,0.25)]">
+                      <div
+                        className={`overflow-hidden rounded-2xl border p-2 shadow-[0_24px_48px_-16px_rgba(0,0,0,0.4)] ${
+                          scrolled
+                            ? "border-cream/15 bg-ink2/95 backdrop-blur-xl"
+                            : "border-line bg-paper"
+                        }`}
+                      >
                         {item.children.map((c) => (
                           <NavLink
                             key={c.to}
                             to={c.to}
                             className={({ isActive }) =>
-                              `block rounded-xl px-4 py-3 transition-colors ${
-                                isActive ? "bg-cream text-ink" : "text-smoke hover:bg-cream/70 hover:text-ink"
+                              `block rounded-xl px-4 py-2.5 transition-colors ${
+                                isActive
+                                  ? scrolled
+                                    ? "bg-cream/10 text-cream"
+                                    : "bg-cream text-ink"
+                                  : scrolled
+                                  ? "text-cream/70 hover:bg-cream/10 hover:text-cream"
+                                  : "text-smoke hover:bg-cream/70 hover:text-ink"
                               }`
                             }
                           >
-                            <span className="flex items-center justify-between gap-2 text-[0.9375rem] font-medium">
+                            <span className="flex items-center justify-between gap-2 text-[0.875rem] font-medium">
                               {c.label}
                               <span
                                 className={`h-1.5 w-1.5 shrink-0 rounded-full ${
@@ -162,7 +198,11 @@ export default function Navbar() {
                                 }`}
                               />
                             </span>
-                            <span className="mt-0.5 block text-small text-fog">
+                            <span
+                              className={`mt-0.5 block text-xs ${
+                                scrolled ? "text-cream/45" : "text-fog"
+                              }`}
+                            >
                               {c.desc}
                             </span>
                           </NavLink>
@@ -176,8 +216,14 @@ export default function Navbar() {
                     to={item.to!}
                     end={item.to === "/"}
                     className={({ isActive }) =>
-                      `whitespace-nowrap text-[0.9375rem] font-medium tracking-tight transition-colors ${
-                        isActive ? "text-claydeep" : "text-smoke hover:text-ink"
+                      `whitespace-nowrap font-medium tracking-tight transition-colors duration-300 ${
+                        scrolled ? "text-[0.875rem]" : "text-[0.9375rem]"
+                      } ${
+                        isActive
+                          ? "text-clay font-semibold"
+                          : scrolled
+                          ? "text-cream/75 hover:text-cream"
+                          : "text-smoke hover:text-ink"
                       }`
                     }
                   >
@@ -187,22 +233,31 @@ export default function Navbar() {
               )}
             </nav>
 
+            {/* Right Controls */}
             <div className="flex shrink-0 items-center gap-2 sm:gap-3">
               <div className="hidden 2xl:block">
-                <PaletteSwitcher />
+                <PaletteSwitcher dark={scrolled} />
               </div>
               <div className="hidden 2xl:block">
-                <LanguageSwitcher />
+                <LanguageSwitcher dark={scrolled} />
               </div>
               <Link
                 to="/platform"
-                className="btn hidden rounded-full bg-ink px-5 py-2.5 text-[0.875rem] font-medium text-cream transition-colors hover:bg-claydeep 2xl:inline-flex"
+                className={`btn hidden rounded-full font-medium transition-all duration-300 2xl:inline-flex ${
+                  scrolled
+                    ? "bg-clay px-4 py-1.5 text-xs text-cream hover:bg-claydeep shadow-sm"
+                    : "bg-ink px-5 py-2.5 text-[0.875rem] text-cream hover:bg-claydeep"
+                }`}
               >
                 {t.nav.explore}
               </Link>
               <button
                 onClick={() => setMobileOpen(true)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink hover:text-cream 2xl:hidden"
+                className={`inline-flex items-center justify-center rounded-full border transition-all duration-300 2xl:hidden ${
+                  scrolled
+                    ? "h-9 w-9 border-cream/20 text-cream hover:bg-cream/10"
+                    : "h-10 w-10 border-ink/15 text-ink hover:bg-ink hover:text-cream"
+                }`}
                 aria-label={t.nav.openMenu}
               >
                 <Menu className="h-4.5 w-4.5" strokeWidth={1.75} />
@@ -242,78 +297,56 @@ export default function Navbar() {
         </Container>
 
         <nav
-          className="fs-menu-scroll relative min-h-0 flex-1 overflow-y-auto pb-8 pt-2"
+          className="fs-menu-scroll relative flex-1 overflow-y-auto py-6"
           aria-label={t.nav.menuTitle}
         >
-          <Container className="flex flex-col">
-            <Link
-              to="/platform"
-              onClick={() => setMobileOpen(false)}
-              className="mb-5 flex items-center justify-between rounded-2xl border border-cream/15 bg-cream/[0.06] px-5 py-4 active:bg-cream/15"
-            >
-              <span>
-                <span className="block text-[15px] font-semibold text-cream">{t.nav.explore}</span>
-                <span className="mt-0.5 block font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-clay">
-                  {t.nav.ctaNote}
-                </span>
-              </span>
-              <ArrowUpRight className="h-4.5 w-4.5 text-clay" strokeWidth={1.75} />
-            </Link>
-
+          <Container className="flex flex-col gap-1">
             {menu.map((item, i) =>
               item.children ? (
-                <div key={item.label} className="border-b border-cream/10">
+                <div key={item.label} className="border-b border-cream/10 py-2">
                   <button
                     onClick={() => setExpanded(expanded === item.label ? null : item.label)}
                     aria-expanded={expanded === item.label}
-                    className="flex min-h-[60px] w-full items-center justify-between gap-4 py-4 text-left"
+                    className="flex w-full min-h-[56px] items-center justify-between py-2 text-left"
                   >
-                    <span className="flex items-baseline gap-4">
+                    <span className="flex items-baseline gap-4 display text-[1.75rem] font-medium tracking-tight text-cream">
                       <span className="font-mono text-[0.75rem] tracking-[0.16em] text-clay/70">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="display text-[1.75rem] font-medium tracking-tight text-cream">
-                        {item.label}
-                      </span>
+                      {item.label}
                     </span>
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-clay transition-transform duration-300 ${
-                        expanded === item.label ? "rotate-180" : ""
-                      }`}
-                      strokeWidth={1.75}
-                    />
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cream/15 text-cream/70">
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          expanded === item.label ? "rotate-180 text-clay" : ""
+                        }`}
+                        strokeWidth={1.75}
+                      />
+                    </span>
                   </button>
                   <div
-                    className={`grid transition-all duration-500 ${
+                    className={`grid transition-all duration-300 ease-in-out ${
                       expanded === item.label
-                        ? "grid-rows-[1fr] pb-4 opacity-100"
+                        ? "grid-rows-[1fr] opacity-100 pb-3"
                         : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden space-y-1 pl-8 pt-1">
                       {item.children.map((c) => (
-                        <NavLink key={c.to} to={c.to} className="block rounded-xl">
-                          {({ isActive }) => (
-                            <span
-                              className={`flex items-start gap-3 rounded-xl px-3 py-3.5 ${
-                                isActive ? "bg-cream/10 text-cream" : "text-cream/65"
-                              }`}
-                            >
-                              <span
-                                className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${
-                                  isActive ? "bg-clay" : "bg-cream/25"
-                                }`}
-                              />
-                              <span>
-                                <span className="block text-[1rem] font-medium leading-snug">
-                                  {c.label}
-                                </span>
-                                <span className="mt-0.5 block text-small leading-snug text-cream/45">
-                                  {c.desc}
-                                </span>
-                              </span>
-                            </span>
-                          )}
+                        <NavLink
+                          key={c.to}
+                          to={c.to}
+                          onClick={() => setMobileOpen(false)}
+                          className={({ isActive }) =>
+                            `block rounded-xl px-4 py-2.5 transition-colors ${
+                              isActive
+                                ? "bg-cream/15 text-cream"
+                                : "text-cream/75 hover:bg-cream/10 hover:text-cream"
+                            }`
+                          }
+                        >
+                          <span className="block text-sm font-medium">{c.label}</span>
+                          <span className="block text-xs text-cream/45">{c.desc}</span>
                         </NavLink>
                       ))}
                     </div>
@@ -324,8 +357,9 @@ export default function Navbar() {
                   key={item.label}
                   to={item.to!}
                   end={item.to === "/"}
+                  onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
-                    `flex min-h-[60px] items-center gap-4 border-b border-cream/10 py-4 display text-[1.75rem] font-medium tracking-tight ${
+                    `flex min-h-[56px] items-center gap-4 border-b border-cream/10 py-3 display text-[1.75rem] font-medium tracking-tight ${
                       isActive ? "text-clay" : "text-cream"
                     }`
                   }

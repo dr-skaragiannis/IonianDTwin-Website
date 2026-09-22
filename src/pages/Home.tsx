@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Boxes, Cpu, Gauge, Landmark, Layers, Leaf, Radar } from "lucide-react";
-import { useT } from "../i18n";
+import { ArrowRight, Boxes, Cpu, Gauge, Landmark, Layers, Leaf, Newspaper, Radar } from "lucide-react";
+import { useLang, useT } from "../i18n";
 import {
   Container,
   Counter,
@@ -9,24 +9,26 @@ import {
   SectionHead,
   Wavy,
 } from "../components/ui";
-const HERO_IMG = "./images/ionian-twin-hero.jpg";
+import heroImg from "../assets/ionian-twin-hero.jpg";
+const HERO_IMG = heroImg;
 
 /** Island label positions, georeferenced to the hero imagery (percent of frame) */
 const ISLAND_POS: { x: string; y: string }[] = [
-  { x: "27%", y: "13%" },
-  { x: "34%", y: "22%" },
-  { x: "45%", y: "30%" },
-  { x: "52%", y: "41%" },
-  { x: "66%", y: "52%" },
-  { x: "47%", y: "68%" },
-  { x: "74%", y: "74%" },
+  { x: "27%", y: "13%" }, // Corfu
+  { x: "34%", y: "22%" }, // Paxi
+  { x: "45%", y: "30%" }, // Lefkada
+  { x: "52%", y: "41%" }, // Kefalonia
+  { x: "66%", y: "52%" }, // Ithaca
+  { x: "47%", y: "68%" }, // Zakynthos
 ];
 
 /** Portal-card icons, indexed to match h.explore order. */
-const EXPLORE_ICONS = [Radar, Leaf, Landmark, Layers, Cpu, Gauge, Boxes];
+const EXPLORE_ICONS = [Radar, Leaf, Landmark, Layers, Cpu, Gauge, Boxes, Newspaper];
 
 export default function Home() {
+  const { lang } = useLang();
   const t = useT();
+  const isEl = lang === "el";
   const h = t.home;
   const d = t.dashboard;
   const m = t.mobile;
@@ -256,19 +258,24 @@ export default function Home() {
                 <p className="display mt-3 text-2xl font-medium tracking-tight text-cream">
                   {d.crumb}
                 </p>
-                <ul className="mt-6 flex-1 space-y-3 border-t border-cream/10 pt-6">
+                <ul className="mt-6 flex-1 space-y-3.5 border-t border-cream/10 pt-6">
                   {d.features.slice(0, 3).map((f) => (
-                    <li key={f.title} className="text-small flex items-start gap-2.5 text-cream/70">
-                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-clay" />
+                    <li key={f.title} className="text-small flex items-start gap-2.5 text-cream/75">
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
                       <span>
-                        <span className="font-medium text-cream/85">{f.title}.</span>{" "}
+                        <strong className="font-semibold text-cream">{f.title}:</strong>{" "}
                         {f.desc}
                       </span>
                     </li>
                   ))}
-                  <li className="text-small flex items-start gap-2.5 font-mono uppercase tracking-[0.14em] text-fog">
-                    <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-clay" />
-                    {d.meta.join(" · ")}
+                  <li className="text-small flex items-start gap-2.5 pt-1 text-cream/65">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                    <span>
+                      <strong className="font-semibold text-cream">{isEl ? "Δυνατότητες" : "Capabilities"}:</strong>{" "}
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-fog">
+                        {d.meta.join(" · ")}
+                      </span>
+                    </span>
                   </li>
                 </ul>
                 <Link
@@ -290,16 +297,36 @@ export default function Home() {
                 <p className="display mt-3 text-2xl font-medium tracking-tight text-cream">
                   {m.crumb}
                 </p>
-                <ul className="mt-6 flex-1 space-y-3 border-t border-cream/10 pt-6">
-                  {m.checks.slice(0, 3).map((chk) => (
-                    <li key={chk} className="text-small flex items-start gap-2.5 text-cream/70">
-                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-clay" />
-                      {chk}
-                    </li>
-                  ))}
-                  <li className="text-small flex items-start gap-2.5 font-mono uppercase tracking-[0.14em] text-fog">
-                    <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-clay" />
-                    {m.meta.join(" · ")}
+                <ul className="mt-6 flex-1 space-y-3.5 border-t border-cream/10 pt-6">
+                  {m.checks.slice(0, 3).map((chk) => {
+                    const colonIdx = chk.indexOf(":");
+                    const hasColon = colonIdx > -1 && colonIdx < 35;
+                    const label = hasColon ? chk.slice(0, colonIdx) : null;
+                    const rest = hasColon ? chk.slice(colonIdx + 1).trim() : chk;
+                    return (
+                      <li key={chk} className="text-small flex items-start gap-2.5 text-cream/75">
+                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                        <span>
+                          {label ? (
+                            <>
+                              <strong className="font-semibold text-cream">{label}:</strong>{" "}
+                              {rest}
+                            </>
+                          ) : (
+                            chk
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
+                  <li className="text-small flex items-start gap-2.5 pt-1 text-cream/65">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                    <span>
+                      <strong className="font-semibold text-cream">{isEl ? "Πρότυπα" : "Standards"}:</strong>{" "}
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-fog">
+                        {m.meta.join(" · ")}
+                      </span>
+                    </span>
                   </li>
                 </ul>
                 <Link

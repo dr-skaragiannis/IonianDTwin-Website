@@ -21,9 +21,9 @@ const EN_MENU: NavItem[] = [
       { label: "Web Dashboard", to: "/platform/dashboard", desc: "GIS maps, heatmaps and forecasts" },
       { label: "Mobile App", to: "/platform/mobile-app", desc: "Alerts and crowdsourcing on the go" },
       { label: "LLM Interface", to: "/platform/intelligence", desc: "Ask the twin anything" },
+      { label: "Indicators", to: "/indicators", desc: "34 sustainability indicators across 10 categories" },
     ],
   },
-  { label: "Indicators", to: "/indicators" },
   {
     label: "Resources",
     children: [
@@ -32,6 +32,7 @@ const EN_MENU: NavItem[] = [
       { label: "References", to: "/resources/references", desc: "Standards, papers and providers" },
     ],
   },
+  { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -53,9 +54,9 @@ const EL_MENU: NavItem[] = [
       { label: "Πίνακας Ελέγχου", to: "/platform/dashboard", desc: "Χάρτες GIS, θερμικοί χάρτες, προβλέψεις" },
       { label: "Εφαρμογή Κινητού", to: "/platform/mobile-app", desc: "Ειδοποιήσεις και συμμετοχική καταγραφή" },
       { label: "Διεπαφή LLM", to: "/platform/intelligence", desc: "Ρωτήστε το δίδυμο οτιδήποτε" },
+      { label: "Δείκτες Βιωσιμότητας", to: "/indicators", desc: "34 δείκτες σε 10 κατηγορίες GSTC" },
     ],
   },
-  { label: "Δείκτες", to: "/indicators" },
   {
     label: "Πόροι",
     children: [
@@ -64,6 +65,7 @@ const EL_MENU: NavItem[] = [
       { label: "Βιβλιογραφία", to: "/resources/references", desc: "Πρότυπα, δημοσιεύσεις, πάροχοι" },
     ],
   },
+  { label: "Blog", to: "/blog" },
   { label: "Επικοινωνία", to: "/contact" },
 ];
 

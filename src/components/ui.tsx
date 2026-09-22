@@ -415,26 +415,26 @@ export function LogoMark({
     return (
       <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
         <path
-          d="M4 11c3.2-2.8 6.6-2.8 10 0s6.8 2.8 10 0"
+          d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
           stroke="#d98a63"
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
         />
         <path
-          d="M4 17c3.2-2.8 6.6-2.8 10 0s6.8 2.8 10 0"
+          d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
           stroke="#a9c3bf"
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
         />
         <path
-          d="M4 23c3.2-2.8 6.6-2.8 10 0s6.8 2.8 10 0"
+          d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
           stroke="#fcfbf7"
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
-          opacity=".8"
+          opacity=".85"
         />
       </svg>
     );
@@ -444,23 +444,23 @@ export function LogoMark({
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
       <rect width="32" height="32" rx="8" fill="currentColor" />
       <path
-        d="M7 12c3-2.5 6-2.5 9 0s6 2.5 9 0"
+        d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
         stroke="var(--color-clay)"
-        strokeWidth="2"
+        strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
       />
       <path
-        d="M7 18c3-2.5 6-2.5 9 0s6 2.5 9 0"
+        d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
         stroke="var(--color-mist)"
-        strokeWidth="2"
+        strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
       />
       <path
-        d="M7 24c3-2.5 6-2.5 9 0s6 2.5 9 0"
+        d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
         stroke="var(--color-paper)"
-        strokeWidth="2"
+        strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
         opacity=".85"

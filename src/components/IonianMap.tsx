@@ -3,6 +3,7 @@ import { useMap } from "react-leaflet";
 import {
   CircleMarker,
   MapContainer,
+  Popup,
   ScaleControl,
   TileLayer,
   Tooltip,
@@ -14,6 +15,8 @@ export interface MapPoint {
   name: string;
   at: [number, number];
   i: number; // intensity 0–1
+  island?: string;
+  detail?: string;
 }
 
 export function dotColor(i: number) {
@@ -23,9 +26,39 @@ export function dotColor(i: number) {
 }
 
 /**
+ * Handles map container resize and prevents grey tile glitches
+ */
+function MapResizeHandler() {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+    const onResize = () => map.invalidateSize();
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [map]);
+  return null;
+}
+
+/**
+ * Re-centers map when target coordinates change
+ */
+function MapViewController({ targetCenter, targetZoom }: { targetCenter?: [number, number]; targetZoom?: number }) {
+  const map = useMap();
+  useEffect(() => {
+    if (targetCenter) {
+      map.flyTo(targetCenter, targetZoom ?? 8, { duration: 1.2 });
+    }
+  }, [targetCenter, targetZoom, map]);
+  return null;
+}
+
+/**
  * Keeps vertical page scrolling working on touch devices.
- * A one-finger drag on the map would otherwise trap the page, so on small
- * screens dragging is disabled and the zoom controls take over.
  */
 function TouchFriendly() {
   const map = useMap();
@@ -45,8 +78,6 @@ function TouchFriendly() {
 
   useEffect(() => {
     if (!isTouch) return;
-    // Re-enable with two fingers only is not available natively, so expose
-    // dragging again on the largest touch viewports where it feels natural.
     const mq = window.matchMedia("(min-width: 1024px)");
     const apply = () => (mq.matches ? map.dragging.enable() : map.dragging.disable());
     apply();
@@ -64,13 +95,21 @@ function TouchFriendly() {
 export default function IonianMap({
   points,
   islandLabels,
+  selectedPoint,
+  onSelectPoint,
+  targetCenter,
+  targetZoom,
 }: {
   points: MapPoint[];
   islandLabels: { name: string; at: [number, number] }[];
+  selectedPoint?: string | null;
+  onSelectPoint?: (p: MapPoint) => void;
+  targetCenter?: [number, number];
+  targetZoom?: number;
 }) {
   return (
     <MapContainer
-      center={[38.15, 21.15]}
+      center={[38.15, 20.85]}
       zoom={7}
       minZoom={6}
       maxZoom={13}
@@ -94,6 +133,8 @@ export default function IonianMap({
       <ZoomControl position="bottomright" />
       <ScaleControl imperial={false} position="bottomright" />
       <TouchFriendly />
+      <MapResizeHandler />
+      <MapViewController targetCenter={targetCenter} targetZoom={targetZoom} />
 
       {/* Island name labels (positioned offshore) */}
       {islandLabels.map((island) => (
@@ -110,38 +151,54 @@ export default function IonianMap({
       ))}
 
       {/* Monitoring points at real coordinates */}
-      {points.map((p) => (
-        <Fragment key={`${p.name}-${p.at.join(",")}`}>
-          {p.i >= 0.75 && (
+      {points.map((p) => {
+        const isSelected = selectedPoint === p.name;
+        return (
+          <Fragment key={`${p.name}-${p.at.join(",")}`}>
+            {(p.i >= 0.75 || isSelected) && (
+              <CircleMarker
+                center={p.at}
+                radius={isSelected ? 14 : 11}
+                pathOptions={{
+                  stroke: true,
+                  color: isSelected ? "#ffffff" : dotColor(p.i),
+                  weight: isSelected ? 2.5 : 1.5,
+                  fill: false,
+                  opacity: 0.9,
+                  className: "leaflet-ping",
+                }}
+              />
+            )}
             <CircleMarker
               center={p.at}
-              radius={11}
-              pathOptions={{
-                stroke: true,
-                color: dotColor(p.i),
-                weight: 1.5,
-                fill: false,
-                opacity: 0.8,
-                className: "leaflet-ping",
+              radius={isSelected ? 8 : 3.5 + p.i * 4.5}
+              eventHandlers={{
+                click: () => onSelectPoint?.(p),
               }}
-            />
-          )}
-          <CircleMarker
-            center={p.at}
-            radius={3.5 + p.i * 4.5}
-            pathOptions={{
-              color: "#082125",
-              weight: 1,
-              fillColor: dotColor(p.i),
-              fillOpacity: 0.92,
-            }}
-          >
-            <Tooltip direction="top" offset={[0, -4]} className="dot-tip">
-              {p.name} · {Math.round(p.i * 100)}% of threshold
-            </Tooltip>
-          </CircleMarker>
-        </Fragment>
-      ))}
+              pathOptions={{
+                color: isSelected ? "#ffffff" : "#082125",
+                weight: isSelected ? 2 : 1,
+                fillColor: dotColor(p.i),
+                fillOpacity: 0.95,
+              }}
+            >
+              <Tooltip direction="top" offset={[0, -4]} className="dot-tip">
+                <span className="font-semibold">{p.name}</span> · {Math.round(p.i * 100)}% load
+                {p.island ? ` (${p.island})` : ""}
+              </Tooltip>
+              <Popup className="station-popup">
+                <div className="p-1 text-ink">
+                  <p className="font-semibold text-sm">{p.name}</p>
+                  <p className="text-xs text-smoke mt-0.5">
+                    {p.island ? `${p.island} · ` : ""}Load: {Math.round(p.i * 100)}%
+                  </p>
+                  {p.detail && <p className="text-xs mt-1 text-claydeep">{p.detail}</p>}
+                </div>
+              </Popup>
+            </CircleMarker>
+          </Fragment>
+        );
+      })}
     </MapContainer>
   );
 }
