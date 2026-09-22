@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import SeoSync from "./components/SeoSync";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -28,9 +29,14 @@ function ScrollToTop() {
   return null;
 }
 
+/* Clean URLs need a server; when the site is opened straight from disk
+ * (file://) fall back to hash routing so menu links resolve locally. */
+const Router = window.location.protocol === "file:" ? HashRouter : BrowserRouter;
+
 export default function App() {
   return (
-    <HashRouter>
+    <Router>
+      <SeoSync />
       <ScrollToTop />
       <div className="flex min-h-screen flex-col bg-cream">
         <Navbar />
@@ -57,6 +63,6 @@ export default function App() {
         </div>
         <Footer />
       </div>
-    </HashRouter>
+    </Router>
   );
 }

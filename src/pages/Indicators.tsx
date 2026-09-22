@@ -19,7 +19,7 @@ function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: s
   return (
     <div>
       <svg viewBox="0 0 320 186" className="w-full max-w-md">
-        <path d="M25 165 A135 135 0 0 1 295 165" fill="none" stroke="#e3ddcc" strokeWidth="16" strokeLinecap="round" />
+        <path d="M25 165 A135 135 0 0 1 295 165" fill="none" stroke="#DADFCC" strokeWidth="16" strokeLinecap="round" />
         <path
           d="M25 165 A135 135 0 0 1 295 165"
           fill="none"
@@ -31,22 +31,22 @@ function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: s
         />
         <defs>
           <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#7fb5ad" />
-            <stop offset="55%" stopColor="#c9a24b" />
-            <stop offset="100%" stopColor="#c4633c" />
+            <stop offset="0%" stopColor="#0086EA" />
+            <stop offset="55%" stopColor="#FABF5D" />
+            <stop offset="100%" stopColor="#E2470B" />
           </linearGradient>
         </defs>
-        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Source Serif 4, serif" fill="#1e1d19">
+        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Jura, sans-serif" fill="#1E221D">
           {value}
         </text>
-        <text x="160" y="160" textAnchor="middle" fontSize="12" letterSpacing="2.5" fontFamily="IBM Plex Mono, monospace" fill="#8d8a7d">
+        <text x="160" y="160" textAnchor="middle" fontSize="12" letterSpacing="2.5" fontFamily="JetBrains Mono, monospace" fill="#7B8177">
           {labels.g}
         </text>
       </svg>
       <div className="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-1 font-mono text-[9px] uppercase tracking-[0.12em] text-fog sm:text-[9.5px] sm:tracking-[0.14em]">
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#7fb5ad]" /> {labels.low}</span>
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#c9a24b]" /> {labels.watch}</span>
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#c4633c]" /> {labels.alert}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#0086EA]" /> {labels.low}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#FABF5D]" /> {labels.watch}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#E2470B]" /> {labels.alert}</span>
       </div>
     </div>
   );

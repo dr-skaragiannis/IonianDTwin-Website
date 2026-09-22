@@ -9,8 +9,8 @@ import {
   SectionHead,
   Wavy,
 } from "../components/ui";
-import heroImg from "../assets/ionian-twin-hero.jpg";
-const HERO_IMG = heroImg;
+/* Served from /public for a smaller HTML bundle + separate image caching. */
+const HERO_IMG = "./images/ionian-twin-hero.jpg";
 
 /** Island label positions, georeferenced to the hero imagery (percent of frame) */
 const ISLAND_POS: { x: string; y: string }[] = [
@@ -19,7 +19,7 @@ const ISLAND_POS: { x: string; y: string }[] = [
   { x: "45%", y: "30%" }, // Lefkada
   { x: "52%", y: "41%" }, // Kefalonia
   { x: "66%", y: "52%" }, // Ithaca
-  { x: "47%", y: "68%" }, // Zakynthos
+  { x: "86%", y: "74%" }, // Zakynthos (bottom-right in the hero frame)
 ];
 
 /** Portal-card icons, indexed to match h.explore order. */
@@ -44,7 +44,7 @@ export default function Home() {
             <span className="eyebrow">{h.eyebrow}</span>
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="h-display display mx-auto mt-6 max-w-4xl font-medium tracking-tight text-ink">
+            <h1 className="h-display display mx-auto mt-6 max-w-[90%] font-medium tracking-tight text-ink">
               {h.titleA}
               <em className="relative whitespace-nowrap text-clay">
                 <Wavy text={h.titleAccent} />
@@ -80,7 +80,7 @@ export default function Home() {
             </h1>
           </Reveal>
           <Reveal delay={180}>
-            <p className="text-lede mx-auto mt-7 max-w-2xl text-smoke">{h.lede}</p>
+            <p className="text-lede mx-auto mt-7 max-w-[90%] text-smoke">{h.lede}</p>
           </Reveal>
           <Reveal delay={260}>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -105,12 +105,14 @@ export default function Home() {
         {/* Panoramic archipelago — digital twin visual */}
         <Container className="relative pb-20">
           <Reveal delay={220}>
-            <div className="relative overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_50px_90px_-38px_rgba(19,18,16,0.55)]">
+            <div className="relative overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_50px_90px_-38px_rgba(30,34,29,0.55)]">
               <img
                 src={HERO_IMG}
                 alt={h.heroCaption}
                 className="aspect-[16/11] w-full object-cover sm:aspect-[21/9]"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink2/70 via-transparent to-ink2/25" />
               <div className="scanline" />
@@ -125,7 +127,7 @@ export default function Home() {
                     style={{ left: p.x, top: p.y }}
                   >
                     <span className="h-1 w-1 shrink-0 rounded-full bg-mist/90 shadow-[0_0_6px_rgba(169,195,191,0.9)]" />
-                    <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-cream/85 [text-shadow:0_0_8px_rgba(8,33,37,0.95),0_1px_3px_rgba(8,33,37,0.95)]">
+                    <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-cream/85 [text-shadow:0_0_8px_rgba(20,26,20,0.95),0_1px_3px_rgba(20,26,20,0.95)]">
                       {h.islands[i]}
                     </span>
                   </span>
@@ -358,7 +360,7 @@ export default function Home() {
                 <Reveal key={e.to} delay={(i % 3) * 90}>
                   <Link
                     to={e.to}
-                    className="group flex h-full flex-col rounded-2xl border border-line bg-cream/70 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-clay/40 hover:shadow-[0_30px_60px_-24px_rgba(19,18,16,0.35)]"
+                    className="group flex h-full flex-col rounded-2xl border border-line bg-cream/70 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-clay/40 hover:shadow-[0_30px_60px_-24px_rgba(30,34,29,0.35)]"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-clay/10 text-clay transition-colors duration-300 group-hover:bg-clay group-hover:text-cream">
                       <Icon className="h-4.5 w-4.5" strokeWidth={1.75} />

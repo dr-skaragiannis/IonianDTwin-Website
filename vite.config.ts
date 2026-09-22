@@ -10,7 +10,11 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "./",
   plugins: [react(), tailwindcss(), viteSingleFile()],
+  build: {
+    assetsInlineLimit: 100000000,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

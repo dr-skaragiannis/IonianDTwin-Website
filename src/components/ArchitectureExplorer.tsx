@@ -21,7 +21,7 @@ export default function ArchitectureExplorer() {
                 onClick={() => setActive(l.id)}
                 className={`group w-full rounded-xl border px-5 py-4 text-left transition-all duration-300 ${
                   isActive
-                    ? "border-clay/60 bg-paper shadow-[0_16px_40px_-16px_rgba(196,99,60,0.35)]"
+                    ? "border-clay/60 bg-paper shadow-[0_16px_40px_-16px_rgba(226,71,11,0.35)]"
                     : "border-line bg-paper/50 hover:border-ink/25 hover:bg-paper"
                 }`}
                 aria-pressed={isActive}

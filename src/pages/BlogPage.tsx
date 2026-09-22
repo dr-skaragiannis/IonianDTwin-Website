@@ -15,13 +15,12 @@ import {
   Tag as TagIcon,
   X,
 } from "lucide-react";
-import { useLang, useT } from "../i18n";
+import { useLang } from "../i18n";
 import { Container, EuFlag, Reveal } from "../components/ui";
 import { BLOG_CATEGORIES, BLOG_POSTS } from "../data/blogPosts";
 
 export default function BlogPage() {
   const { lang } = useLang();
-  const t = useT();
   const isEl = lang === "el";
   const [searchParams, setSearchParams] = useSearchParams();
 

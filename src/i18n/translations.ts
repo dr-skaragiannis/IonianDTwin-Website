@@ -45,7 +45,7 @@ export const EN = {
     colExternal: "External",
     copyright: "© 2025 Ionian University · ELKE-IP · Special Account for Research Funds",
     privacy: "Privacy Policy",
-    phase: "First phase of implementation · Start 01.2027 → 09.2029",
+    phase: "First phase of implementation · Start 09.2026 → 03.2029",
   },
 
   home: {
@@ -59,7 +59,7 @@ export const EN = {
     ctaSecondary: "Sustainability",
     metaLead: "Lead · Ionian University (ELKE-IP)",
     metaOps: "OPS 6061866",
-    metaYears: "2027 → 2029",
+    metaYears: "2026 → 2029",
     heroRegion: "NUTS-2 · Ionian Islands",
     heroEo: "EO composite · Sentinel-2",
     heroIndex: "Sustainability index · region",
@@ -95,7 +95,7 @@ export const EN = {
     explore: [
       { to: "/platform", title: "Platform", desc: "Three doors into one twin — dashboard, mobile app and LLM interface." },
       { to: "/about/challenge", title: "Sustainability", desc: "Six pillars, six islands — how the twin measures a sustainable Ionian." },
-      { to: "/about/project", title: "The Project", desc: "ERDF funding, nine deliverables and the 2027–2029 timeline." },
+      { to: "/about/project", title: "The Project", desc: "ERDF funding, nine deliverables and the 2026–2029 timeline." },
       { to: "/about/architecture", title: "Architecture", desc: "Five layers, from open data sources to grounded decisions." },
       { to: "/about/technology", title: "Technology", desc: "Stack, open standards and EU-cloud operations." },
       { to: "/indicators", title: "Indicators", desc: "34 indicators, 10 GSTC-aligned categories, one composite index." },
@@ -142,7 +142,7 @@ export const EN = {
     titleA: "Funded by Europe.",
     titleB: "Built for the islands.",
     lede: "IonianDTwin (OPS 6061866) is proposed under the Ionian Islands Programme 2021–2027, co-financed by the European Regional Development Fund — led by Ionian University.",
-    meta: ["€250,000 · ERDF co-financed", "OPS 6061866", "RSO 1.1 · Research & innovation", "Jan 2027 → Sep 2029"],
+    meta: ["€250,000 · ERDF co-financed", "OPS 6061866", "RSO 1.1 · Research & innovation", "Sep 2026 → Mar 2029"],
     fEyebrow: "The facts",
     fTitle: "One card, every credential.",
      contextNote: "Priority: enhancing regional competitiveness through entrepreneurship, innovation and digital transformation. Sector: tourism. This initiative is one of the first systematic attempts by a Greek regional authority to quantify and manage destination sustainability through open-data integration, system interoperability and data-driven methodologies.",
@@ -454,7 +454,7 @@ export const EN = {
     faqEyebrow: "FAQ",
     faqTitle: "Asked often, answered here.",
     faqs: [
-      { q: "When does IonianDTwin start?", a: "The project is currently in the proposal phase under the Ionian Islands Programme 2021–2027. The target start date is 1 January 2027, running for 33 months until 30 September 2029." },
+      { q: "When does IonianDTwin start?", a: "The project is currently in the proposal phase under the Ionian Islands Programme 2021–2027. The target start date is 1 September 2026, running for 30 months until 31 March 2029." },
       { q: "Can my municipality or island take part?", a: "Yes — the twin is designed for the whole region. Municipalities interested in hosting sensor stations, piloting the dashboard or shaping the indicator thresholds are encouraged to write to us; the consortium is finalising its partner list during the proposal phase." },
       { q: "Will the data be open?", a: "The platform is built on open standards (OGC services, open APIs) and public data sources like Copernicus. Aggregated, anonymised indicator data will be published openly; raw sensor and citizen-report data remain subject to GDPR safeguards." },
       { q: "How can citizens and visitors contribute?", a: "Through the mobile app's crowdsourcing layer — report pollution, habitat damage or accessibility barriers with a photo. Verified reports become part of the twin's live data and improve the models for everyone." },
@@ -508,7 +508,7 @@ export const EN = {
     cookieNote: "localStorage entries are stored locally in your browser and are never transmitted to our servers. They contain only a language or theme preference and no personal or identifying data. You can clear them at any time through your browser's settings.",
     scriptHeading: "Scripts and external resources",
     scripts: [
-      { name: "Google Fonts", layer: "Third-party", purpose: "Serves the typography (Source Serif 4, Instrument Sans, IBM Plex Mono) used on the site. Your device requests the font files from Google's servers, which may see your IP address.", provider: "Google Fonts / fonts.googleapis.com" },
+      { name: "Google Fonts", layer: "Third-party", purpose: "Serves the typography (Jura, Manrope, JetBrains Mono) used on the site. Your device requests the font files from Google's servers, which may see your IP address.", provider: "Google Fonts / fonts.googleapis.com" },
       { name: "Map tiles (CARTO / OpenStreetMap)", layer: "Third-party", purpose: "Loads the interactive basemap tiles for the Digital Twin map. Your device requests tile images from the CARTO CDN, which may see your IP address and the tiles you view.", provider: "basemaps.cartocdn.com / openstreetmap.org" },
       { name: "Contact form", layer: "First-party", purpose: "Collects the data you submit (name, email, organisation, message) solely to respond to your enquiry. No data is stored in cookies or sent to third parties.", provider: "IonianDTwin consortium" },
     ],
@@ -615,7 +615,7 @@ export const EL: Dict = {
     colExternal: "Εξωτερικοί σύνδεσμοι",
     copyright: "© 2025 Ιόνιο Πανεπιστήμιο · ΕΛΚΕ · Ειδικός Λογαριασμός Κονδυλίων Έρευνας",
     privacy: "Πολιτική Απορρήτου",
-    phase: "1η φάση υλοποίησης · Έναρξη 01.2027 → 09.2029",
+    phase: "1η φάση υλοποίησης · Έναρξη 09.2026 → 03.2029",
   },
 
   home: {
@@ -629,7 +629,7 @@ export const EL: Dict = {
     ctaSecondary: "Βιωσιμότητα",
     metaLead: "Φορέας Υλοποίησης · Ιόνιο Πανεπιστήμιο (ΕΛΚΕ)",
     metaOps: "ΚΩΔ. OPS 6061866",
-    metaYears: "2027 → 2029",
+    metaYears: "2026 → 2029",
     heroRegion: "NUTS-2 · Ιόνια Νησιά",
     heroEo: "Σύνθεση δορυφορικών δεδομένων · Sentinel-2",
     heroIndex: "Δείκτης βιωσιμότητας · περιφέρεια",
@@ -665,7 +665,7 @@ export const EL: Dict = {
     explore: [
       { to: "/platform", title: "Πλατφόρμα", desc: "Τρεις διεπαφές σε ένα δίδυμο — πίνακας ελέγχου, εφαρμογή κινητού και διεπαφή LLM." },
       { to: "/about/challenge", title: "Βιωσιμότητα", desc: "Έξι πυλώνες, έξι νησιά — πώς μετρά το δίδυμο ένα βιώσιμο Ιόνιο." },
-      { to: "/about/project", title: "Το Έργο", desc: "Χρηματοδότηση ΕΤΠΑ, εννέα παραδοτέα και το χρονοδιάγραμμα 2027–2029." },
+      { to: "/about/project", title: "Το Έργο", desc: "Χρηματοδότηση ΕΤΠΑ, εννέα παραδοτέα και το χρονοδιάγραμμα 2026–2029." },
       { to: "/about/architecture", title: "Αρχιτεκτονική", desc: "Πέντε επίπεδα, από τις ανοικτές πηγές δεδομένων στις τεκμηριωμένες αποφάσεις." },
       { to: "/about/technology", title: "Τεχνολογία", desc: "Υποδομή, ανοικτά πρότυπα και λειτουργία σε ευρωπαϊκό υπολογιστικό νέφος." },
       { to: "/indicators", title: "Δείκτες", desc: "34 δείκτες, 10 κατηγορίες κατ' αντιστοιχία GSTC, ένας σύνθετος δείκτης." },
@@ -712,7 +712,7 @@ export const EL: Dict = {
     titleA: "Χρηματοδοτούμενο από την Ευρώπη.",
     titleB: "Κατασκευασμένο για τα νησιά.",
      lede: "Το IonianDTwin (κωδ. OPS 6061866) προτείνεται στο Πρόγραμμα «Ιόνια Νησιά» 2021–2027, με συγχρηματοδότηση από το Ευρωπαϊκό Ταμείο Περιφερειακής Ανάπτυξης — με φορέα υλοποίησης το Ιόνιο Πανεπιστήμιο.",
-    meta: ["250.000 € · συγχρηματοδότηση ΕΤΠΑ", "Κωδ. OPS 6061866", "RSO 1.1 · Έρευνα & καινοτομία", "Ιαν 2027 → Σεπ 2029"],
+    meta: ["250.000 € · συγχρηματοδότηση ΕΤΠΑ", "Κωδ. OPS 6061866", "RSO 1.1 · Έρευνα & καινοτομία", "Σεπ 2026 → Μάρ 2029"],
     fEyebrow: "Τα στοιχεία",
     fTitle: "Όλα τα στοιχεία σε μία κάρτα.",
      contextNote: "Προτεραιότητα: ενίσχυση της περιφερειακής ανταγωνιστικότητας μέσω επιχειρηματικότητας, καινοτομίας και ψηφιακού μετασχηματισμού. Τομέας: τουρισμός. Η πρωτοβουλία αποτελεί μία από τις πρώτες συστηματικές προσπάθειες μιας ελληνικής περιφερειακής αρχής να ποσοτικοποιήσει και να διαχειριστεί τη βιωσιμότητα των προορισμών της μέσω της ενοποίησης ανοικτών δεδομένων, της διαλειτουργικότητας συστημάτων και τεκμηριωμένων μεθοδολογιών.",
@@ -1041,7 +1041,7 @@ export const EL: Dict = {
     faqEyebrow: "Συχνές ερωτήσεις",
      faqTitle: "Συχνές ερωτήσεις, με απαντήσεις εδώ.",
     faqs: [
-      { q: "Πότε ξεκινά το IonianDTwin;", a: "Το έργο βρίσκεται επί του παρόντος σε φάση πρότασης στο Πρόγραμμα «Ιόνια Νησιά» 2021–2027. Η στοχευμένη ημερομηνία έναρξης είναι η 1η Ιανουαρίου 2027, με διάρκεια 33 μήνες έως τις 30 Σεπτεμβρίου 2029." },
+      { q: "Πότε ξεκινά το IonianDTwin;", a: "Το έργο βρίσκεται επί του παρόντος σε φάση πρότασης στο Πρόγραμμα «Ιόνια Νησιά» 2021–2027. Η στοχευμένη ημερομηνία έναρξης είναι η 1η Σεπτεμβρίου 2026, με διάρκεια 30 μήνες έως τις 31 Μαρτίου 2029." },
        { q: "Μπορεί ο δήμος ή το νησί μου να συμμετάσχει;", a: "Ναι — το δίδυμο σχεδιάστηκε για ολόκληρη την περιφέρεια. Δήμοι που ενδιαφέρονται να φιλοξενήσουν σταθμούς αισθητήρων, να εφαρμόσουν πιλοτικά τον πίνακα ελέγχου ή να διαμορφώσουν τα κατώφλια των δεικτών προσκαλούνται να επικοινωνήσουν. Η κοινοπραξία ολοκληρώνει τον κατάλογο εταίρων στη φάση της πρότασης." },
        { q: "Τα δεδομένα θα είναι ανοιχτά;", a: "Η πλατφόρμα βασίζεται σε ανοιχτά πρότυπα (υπηρεσίες OGC, ανοιχτά API) και δημόσιες πηγές όπως το Copernicus. Τα συγκεντρωτικά, ανωνυμοποιημένα δεδομένα δεικτών θα δημοσιευτούν ανοιχτά. Τα ακατέργαστα δεδομένα αισθητήρων και αναφορών πολιτών παραμένουν υπό τους μηχανισμούς προστασίας του GDPR." },
       { q: "Πώς μπορούν να συνεισφέρουν οι πολίτες και οι επισκέπτες;", a: "Μέσω του επιπέδου συμμετοχικής καταγραφής της εφαρμογής κινητού — αναφέρετε ρύπανση, καταστροφή οικοτόπου ή εμπόδιο προσβασιμότητας με μια φωτογραφία. Οι επαληθευμένες αναφορές γίνονται μέρος των ζωντανών δεδομένων του διδύμου και βελτιώνουν τα μοντέλα για όλους." },
@@ -1095,7 +1095,7 @@ export const EL: Dict = {
     cookieNote: "Οι καταχωρήσεις localStorage αποθηκεύονται τοπικά στον browser σας και δεν μεταδίδονται ποτέ στους διακομιστές μας. Περιέχουν μόνο προτίμηση γλώσσας ή θέματος και κανένα προσωπικό ή ταυτοποιητικό δεδομένο. Μπορείτε να τις διαγράψετε ανά πάσα στιγμή μέσω των ρυθμίσεων του browser σας.",
     scriptHeading: "Scripts και εξωτερικοί πόροι",
     scripts: [
-      { name: "Google Fonts", layer: "Τρίτο μέρος", purpose: "Εξυπηρετεί τις γραμματοσειρές (Source Serif 4, Instrument Sans, IBM Plex Mono) που χρησιμοποιούνται στον ιστότοπο. Η συσκευή σας ζητά τα αρχεία γραμματοσειρών από τους διακομιστές της Google, οι οποίοι ενδέχεται να δουν τη διεύθυνση IP σας.", provider: "Google Fonts / fonts.googleapis.com" },
+      { name: "Google Fonts", layer: "Τρίτο μέρος", purpose: "Εξυπηρετεί τις γραμματοσειρές (Jura, Manrope, JetBrains Mono) που χρησιμοποιούνται στον ιστότοπο. Η συσκευή σας ζητά τα αρχεία γραμματοσειρών από τους διακομιστές της Google, οι οποίοι ενδέχεται να δουν τη διεύθυνση IP σας.", provider: "Google Fonts / fonts.googleapis.com" },
       { name: "Χάρτες (CARTO / OpenStreetMap)", layer: "Τρίτο μέρος", purpose: "Φορτώνει τα διαδραστικά tiles του βασικού χάρτη για τον χάρτη του Ψηφιακού Διδύμου. Η συσκευή σας ζητά εικόνες tiles από το CDN της CARTO, το οποίο ενδέχεται να δει τη διεύθυνση IP σας και τα tiles που προβάλλετε.", provider: "basemaps.cartocdn.com / openstreetmap.org" },
       { name: "Φόρμα επικοινωνίας", layer: "Πρώτο μέρος", purpose: "Συλλέγει τα δεδομένα που υποβάλλετε (ονοματεπώνυμο, email, οργανισμός, μήνυμα) αποκλειστικά για την απάντηση στο αίτημά σας. Δεν αποθηκεύονται δεδομένα σε cookies ούτε διαβιβάζονται σε τρίτους.", provider: "Κοινοπραξία IonianDTwin" },
     ],

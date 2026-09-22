@@ -32,7 +32,7 @@ export default function Platform() {
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {t.pillars.map((pill, i) => (
               <Reveal key={pill.title} delay={i * 100}>
-                <div className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-clay/40 hover:shadow-[0_30px_60px_-24px_rgba(19,18,16,0.35)]">
+                <div className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-clay/40 hover:shadow-[0_30px_60px_-24px_rgba(30,34,29,0.35)]">
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-clay/10 font-mono text-sm font-semibold text-clay transition-colors duration-300 group-hover:bg-clay group-hover:text-cream">
                     {`0${i + 1}`}
                   </span>

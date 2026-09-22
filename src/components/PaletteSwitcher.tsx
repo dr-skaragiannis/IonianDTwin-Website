@@ -1,26 +1,22 @@
 import { Palette } from "lucide-react";
-import { usePalette } from "../i18n/palette";
+import { usePalette, type PaletteId } from "../i18n/palette";
+
+const NEXT: Record<PaletteId, { name: string; bg: string; accent: string }> = {
+  ocean: { name: "Ionian Clay", bg: "#C4633C", accent: "#16626B" },
+  clay: { name: "Monochrome", bg: "#0E0E10", accent: "#9A9AA0" },
+  mono: { name: "Ionian Cyan", bg: "#0A2240", accent: "#009ECE" },
+};
 
 export default function PaletteSwitcher({ dark = false }: { dark?: boolean }) {
   const { palette, toggle } = usePalette();
-  
-  const nextName = 
-    palette.id === "clay" ? "Ionian Cyan" : 
-    palette.id === "ocean" ? "Emerald Coast" : "Ionian Clay";
 
-  const nextBg =
-    palette.id === "clay" ? "#0A2240" :
-    palette.id === "ocean" ? "#1B4332" : "#C4633C";
-    
-  const nextAccent =
-    palette.id === "clay" ? "#009ECE" :
-    palette.id === "ocean" ? "#E05A47" : "#16626B";
+  const next = NEXT[palette.id];
 
   return (
     <button
       onClick={toggle}
-      title={`Παλέτα: ${palette.label} — εναλλαγή σε ${nextName}`}
-      aria-label={`Παλέτα χρωμάτων: ${palette.label}. Εναλλαγή σε ${nextName}.`}
+      title={`Παλέτα: ${palette.label} — εναλλαγή σε ${next.name}`}
+      aria-label={`Παλέτα χρωμάτων: ${palette.label}. Εναλλαγή σε ${next.name}.`}
       className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 transition-colors ${
         dark
           ? "border-cream/20 bg-cream/5 hover:bg-cream/15"
@@ -32,11 +28,11 @@ export default function PaletteSwitcher({ dark = false }: { dark?: boolean }) {
       <span className="flex -space-x-1" aria-hidden="true">
         <span
           className="h-3.5 w-3.5 rounded-full ring-1 ring-white/60"
-          style={{ background: nextBg }}
+          style={{ background: next.bg }}
         />
         <span
           className="h-3.5 w-3.5 rounded-full ring-1 ring-white/60"
-          style={{ background: nextAccent }}
+          style={{ background: next.accent }}
         />
       </span>
     </button>

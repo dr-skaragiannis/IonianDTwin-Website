@@ -144,7 +144,7 @@ export default function DashboardMock() {
   }, [layer, selectedIsland]);
 
   const arcLen = Math.PI * 60;
-  const gaugeColor = gauge >= 75 ? "#e0673a" : gauge >= 55 ? "#c9a24b" : "#7fb5ad";
+  const gaugeColor = gauge >= 75 ? "#E2470B" : gauge >= 55 ? "#FABF5D" : "#0086EA";
   const labels = Object.keys(LAYER_ICONS) as LayerId[];
 
   // Filtered points
@@ -159,19 +159,19 @@ export default function DashboardMock() {
   // Alerts per layer
   const ALERTS_DATA: Record<LayerId, { color: string; station: string; issue: string; time: string }[]> = {
     environment: [
-      { color: "#e0673a", station: "Glyfada · Corfu", issue: isEl ? "Υπέρβαση PM2.5 (38 µg/m³)" : "PM2.5 threshold alert (38 µg/m³)", time: "2′" },
-      { color: "#e0673a", station: "Navagio · Zakynthos", issue: isEl ? "Αυξημένη θολότητα υδάτων (4.8 NTU)" : "Turbidity spike in bay (4.8 NTU)", time: "18′" },
-      { color: "#c9a24b", station: "Paleokastritsa · Corfu", issue: isEl ? "Χλωροφύλλη-a σε ζώνη επιτήρησης" : "Chlorophyll-a watch band", time: "44′" },
+      { color: "#E2470B", station: "Glyfada · Corfu", issue: isEl ? "Υπέρβαση PM2.5 (38 µg/m³)" : "PM2.5 threshold alert (38 µg/m³)", time: "2′" },
+      { color: "#E2470B", station: "Navagio · Zakynthos", issue: isEl ? "Αυξημένη θολότητα υδάτων (4.8 NTU)" : "Turbidity spike in bay (4.8 NTU)", time: "18′" },
+      { color: "#FABF5D", station: "Paleokastritsa · Corfu", issue: isEl ? "Χλωροφύλλη-a σε ζώνη επιτήρησης" : "Chlorophyll-a watch band", time: "44′" },
     ],
     transport: [
-      { color: "#e0673a", station: "Corfu Port", issue: isEl ? "Ταυτόχρονη άφιξη 3 κρουαζιερόπλοιων" : "Concurrent arrival: 3 cruise ships", time: "5′" },
-      { color: "#c9a24b", station: "Zakynthos Port", issue: isEl ? "Καθυστέρηση επιβίβασης πορθμείου" : "Ferry embarkation dwell spike", time: "26′" },
-      { color: "#7fb5ad", station: "CFU Airport", issue: isEl ? "Κανονική ροή αφίξεων (42/ημέρα)" : "Normal arrival rate (42 flights/day)", time: "1h" },
+      { color: "#E2470B", station: "Corfu Port", issue: isEl ? "Ταυτόχρονη άφιξη 3 κρουαζιερόπλοιων" : "Concurrent arrival: 3 cruise ships", time: "5′" },
+      { color: "#FABF5D", station: "Zakynthos Port", issue: isEl ? "Καθυστέρηση επιβίβασης πορθμείου" : "Ferry embarkation dwell spike", time: "26′" },
+      { color: "#0086EA", station: "CFU Airport", issue: isEl ? "Κανονική ροή αφίξεων (42/ημέρα)" : "Normal arrival rate (42 flights/day)", time: "1h" },
     ],
     infrastructure: [
-      { color: "#e0673a", station: "Corfu Town", issue: isEl ? "Κορεσμός πεζών Παλαιού Φρουρίου (0.90)" : "Old Fortress pedestrian saturation (0.90)", time: "8′" },
-      { color: "#c9a24b", station: "Zakynthos Town", issue: isEl ? "Πτώση πίεσης δικτύου ύδρευσης (2.1 bar)" : "Water grid pressure drop (2.1 bar)", time: "31′" },
-      { color: "#7fb5ad", station: "Argostoli · Kefalonia", issue: isEl ? "Πληρότητα κάδων παραλίας στο 78%" : "Beach smart-bin fill rate at 78%", time: "2h" },
+      { color: "#E2470B", station: "Corfu Town", issue: isEl ? "Κορεσμός πεζών Παλαιού Φρουρίου (0.90)" : "Old Fortress pedestrian saturation (0.90)", time: "8′" },
+      { color: "#FABF5D", station: "Zakynthos Town", issue: isEl ? "Πτώση πίεσης δικτύου ύδρευσης (2.1 bar)" : "Water grid pressure drop (2.1 bar)", time: "31′" },
+      { color: "#0086EA", station: "Argostoli · Kefalonia", issue: isEl ? "Πληρότητα κάδων παραλίας στο 78%" : "Beach smart-bin fill rate at 78%", time: "2h" },
     ],
   };
 
@@ -204,9 +204,9 @@ export default function DashboardMock() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_40px_80px_-24px_rgba(19,18,16,0.45)]">
+    <div className="overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_40px_80px_-24px_rgba(30,34,29,0.45)]">
       {/* Top browser chrome */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cream/10 bg-[#191814] px-4 py-3 sm:gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cream/10 bg-[#262C25] px-4 py-3 sm:gap-4">
         <div className="hidden gap-1.5 sm:flex">
           <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
           <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
@@ -233,7 +233,7 @@ export default function DashboardMock() {
       </div>
 
       {/* Island selector toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cream/10 bg-[#161512] px-4 py-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cream/10 bg-[#232824] px-4 py-2.5">
         <div className="flex items-center gap-2 overflow-x-auto py-1 text-xs">
           <span className="flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-cream/40">
             <Filter className="h-3 w-3" />
@@ -336,7 +336,7 @@ export default function DashboardMock() {
             </p>
             <div
               className="mt-2 h-1.5 w-28 rounded-full sm:w-40"
-              style={{ background: "linear-gradient(90deg,#7fb5ad,#c9a24b,#e0673a)" }}
+              style={{ background: "linear-gradient(90deg,#0086EA,#FABF5D,#E2470B)" }}
             />
             <div className="mt-1.5 flex justify-between font-mono text-[0.625rem] text-cream/45 sm:text-[0.6875rem]">
               <span>{d.low}</span>
@@ -347,7 +347,7 @@ export default function DashboardMock() {
         </div>
 
         {/* Right side telemetry panel */}
-        <div className="flex flex-col divide-y divide-cream/10 border-t border-cream/10 xl:border-l xl:border-t-0 bg-[#161512]">
+        <div className="flex flex-col divide-y divide-cream/10 border-t border-cream/10 xl:border-l xl:border-t-0 bg-[#232824]">
           {/* Main Index Gauge */}
           <div className="p-5">
             <div className="flex items-center justify-between">
@@ -366,7 +366,7 @@ export default function DashboardMock() {
                 <path
                   d="M20 84 A60 60 0 0 1 140 84"
                   fill="none"
-                  stroke="rgba(252,251,247,0.12)"
+                  stroke="rgba(255,255,255,0.12)"
                   strokeWidth="9"
                   strokeLinecap="round"
                 />
@@ -385,8 +385,8 @@ export default function DashboardMock() {
                   textAnchor="middle"
                   fontSize="28"
                   fontWeight="600"
-                  fontFamily="Source Serif 4, serif"
-                  fill="#fcfbf7"
+                  fontFamily="Jura, sans-serif"
+                  fill="#ffffff"
                 >
                   {Math.round(gauge)}
                 </text>
@@ -396,8 +396,8 @@ export default function DashboardMock() {
                   textAnchor="middle"
                   fontSize="8"
                   letterSpacing="1"
-                  fontFamily="IBM Plex Mono, monospace"
-                  fill="rgba(252,251,247,0.4)"
+                  fontFamily="JetBrains Mono, monospace"
+                  fill="rgba(255,255,255,0.45)"
                 >
                   / 100
                 </text>
@@ -416,9 +416,9 @@ export default function DashboardMock() {
 
           {/* Key telemetry metrics */}
           {[
-            { label: d.aqi, value: String(aqi), unit: "/100", data: [52, 50, 49, 47, 45, 44, 43, aqi], color: "#7fb5ad" },
-            { label: d.crowd, value: crowd.toFixed(2), unit: "", data: [0.61, 0.66, 0.7, 0.68, 0.75, 0.79, 0.8, crowd], color: "#c9a24b" },
-            { label: d.seaTemp, value: "24.6", unit: "°C", data: [23.1, 23.4, 23.6, 23.9, 24.1, 24.3, 24.5, 24.6], color: "#7fb5ad" },
+            { label: d.aqi, value: String(aqi), unit: "/100", data: [52, 50, 49, 47, 45, 44, 43, aqi], color: "#0086EA" },
+            { label: d.crowd, value: crowd.toFixed(2), unit: "", data: [0.61, 0.66, 0.7, 0.68, 0.75, 0.79, 0.8, crowd], color: "#FABF5D" },
+            { label: d.seaTemp, value: "24.6", unit: "°C", data: [23.1, 23.4, 23.6, 23.9, 24.1, 24.3, 24.5, 24.6], color: "#0086EA" },
           ].map((m) => (
             <div key={m.label} className="flex items-center justify-between gap-3 px-5 py-3">
               <div>
@@ -493,7 +493,7 @@ export default function DashboardMock() {
       </div>
 
       {/* Forecast strip & time selector */}
-      <div className="border-t border-cream/10 bg-[#161512] p-4 sm:p-5">
+      <div className="border-t border-cream/10 bg-[#232824] p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-4">
             <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-cream/50 sm:text-[9.5px] sm:tracking-[0.18em]">
@@ -535,7 +535,7 @@ export default function DashboardMock() {
               x2={W - pad}
               y1={pad + f * (CH - pad * 2)}
               y2={pad + f * (CH - pad * 2)}
-              stroke="rgba(252,251,247,0.06)"
+              stroke="rgba(255,255,255,0.07)"
             />
           ))}
           <line
@@ -543,39 +543,39 @@ export default function DashboardMock() {
             x2={xOf(HIST.length - 1)}
             y1={pad}
             y2={CH}
-            stroke="rgba(252,251,247,0.25)"
+            stroke="rgba(255,255,255,0.25)"
             strokeDasharray="3 4"
           />
           <text
             x={xOf(HIST.length - 1) + 6}
             y={pad + 10}
-            fill="rgba(252,251,247,0.5)"
+            fill="rgba(255,255,255,0.55)"
             fontSize="10"
-            fontFamily="IBM Plex Mono, monospace"
+            fontFamily="JetBrains Mono, monospace"
           >
             {d.today}
           </text>
-          <polygon points={bandPts} fill="rgba(224,103,58,0.12)" />
+          <polygon points={bandPts} fill="rgba(226,71,11,0.14)" />
           <polyline
             points={histPts}
             fill="none"
-            stroke="rgba(252,251,247,0.65)"
+            stroke="rgba(255,255,255,0.7)"
             strokeWidth="1.8"
             strokeLinecap="round"
           />
           <polyline
             points={fcstPts}
             fill="none"
-            stroke="#e0673a"
+            stroke="#E2470B"
             strokeWidth="1.8"
             strokeDasharray="5 5"
             strokeLinecap="round"
           />
-          <circle cx={xOf(total - 1)} cy={yOf(FCST[FCST.length - 1])} r="3.5" fill="#e0673a" />
+          <circle cx={xOf(total - 1)} cy={yOf(FCST[FCST.length - 1])} r="3.5" fill="#E2470B" />
         </svg>
       </div>
 
-      <div className="border-t border-cream/10 bg-[#131210] px-5 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      <div className="border-t border-cream/10 bg-[#151915] px-5 py-2.5 flex flex-wrap items-center justify-between gap-2">
         <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-cream/40 sm:text-[0.6875rem] sm:tracking-[0.16em]">
           {d.disclaimer}
         </p>

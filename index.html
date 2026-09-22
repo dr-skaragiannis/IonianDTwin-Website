@@ -3,16 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <script>
+      /* When previewing straight from disk (file://) there is no server, so
+         point relative asset URLs at this file's own folder instead of "/". */
+      (function () {
+        if (location.protocol === "file:") {
+          var b = document.getElementsByTagName("base")[0];
+          if (b) b.href = location.href.replace(/[^/]*$/, "");
+        }
+      })();
+    </script>
+    <title>IonianDTwin — Ένα βιώσιμο Ιόνιο, μετρημένο σε πραγματικό χρόνο</title>
     <meta name="description" content="Το IonianDTwin είναι ένας γεωχωρικός Ψηφιακός Δίδυμος που μετρά συνεχώς τη βιωσιμότητα των Ιονίων Νήσων: οικοσυστήματα, ύδατα, ενέργεια, απόβλητα, βιοποικιλότητα και πολιτιστική κληρονομιά. Συγχρηματοδοτούμενο από την ΕΕ στο Πρόγραμμα «Ιόνια Νησιά» 2021–2027." />
     <meta name="description" lang="en" content="IonianDTwin is a geospatial Digital Twin that continuously measures the sustainability of the Ionian Islands: ecosystems, water, energy, waste, biodiversity and cultural heritage. EU co-funded under the Ionian Islands 2021–2027 programme." />
-    <title>IonianDTwin — Ένα βιώσιμο Ιόνιο, μετρημένο σε πραγματικό χρόνο</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E1D19'/%3E%3Cpath d='M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0' stroke='%23C4633C' stroke-width='2.1' fill='none' stroke-linecap='round'/%3E%3Cpath d='M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0' stroke='%23A9C3BF' stroke-width='2.1' fill='none' stroke-linecap='round'/%3E%3Cpath d='M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0' stroke='%23FCFBF7' stroke-width='2.1' fill='none' stroke-linecap='round' opacity='.85'/%3E%3C/svg%3E" />
+    <meta name="author" content="Ionian University — Department of Informatics" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#0A1930" />
+    <link rel="canonical" href="https://ioniandtwin.di.ionio.gr/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IonianDTwin" />
+    <meta property="og:locale" content="el_GR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="IonianDTwin — Ένα βιώσιμο Ιόνιο, μετρημένο σε πραγματικό χρόνο" />
+    <meta property="og:description" content="Γεωχωρικός Ψηφιακός Δίδυμος για τη βιωσιμότητα των Ιονίων Νήσων: 34 δείκτες GSTC, 25+ πηγές δεδομένων, χάρτης, προβλέψεις και κινητή εφαρμογή. / Geospatial Digital Twin for Ionian Islands sustainability." />
+    <meta property="og:url" content="https://ioniandtwin.di.ionio.gr/" />
+    <meta property="og:image" content="https://ioniandtwin.di.ionio.gr/og-image-el.jpg" />
+    <meta property="og:image:width" content="1810" />
+    <meta property="og:image:height" content="922" />
+    <meta property="og:image:alt" content="IonianDTwin — Ψηφιακό Δίδυμο Ιονίων Νήσων" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image" content="https://ioniandtwin.di.ionio.gr/og-image-en.jpg" />
+    <meta property="og:image:width" content="1775" />
+    <meta property="og:image:height" content="966" />
+    <meta property="og:image:alt" content="IonianDTwin — Digital Twin of the Ionian Islands" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IonianDTwin — Ένα βιώσιμο Ιόνιο, μετρημένο σε πραγματικό χρόνο" />
+    <meta name="twitter:description" content="Γεωχωρικός Ψηφιακός Δίδυμος για τη βιωσιμότητα των Ιονίων Νήσων. EU co-funded · ERDF 2021–2027 · OPS 6061866." />
+    <meta name="twitter:image" content="https://ioniandtwin.di.ionio.gr/og-image-el.jpg" />
+    <meta name="twitter:image:alt" content="IonianDTwin — Ψηφιακό Δίδυμο Ιονίων Νήσων / Digital Twin of the Ionian Islands" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Locally vendored fonts + tiles (offline deployment) -->
+    <link href="./fonts/fonts.css" rel="stylesheet" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://ioniandtwin.di.ionio.gr/#website",
+          "url": "https://ioniandtwin.di.ionio.gr/",
+          "name": "IonianDTwin",
+          "alternateName": "Ψηφιακό Δίδυμο Ιονίων Νήσων",
+          "inLanguage": ["el", "en"],
+          "publisher": { "@id": "https://ioniandtwin.di.ionio.gr/#org" }
+        },
+        {
+          "@type": "ResearchProject",
+          "@id": "https://ioniandtwin.di.ionio.gr/#project",
+          "name": "IonianDTwin: Digital Twin for the Dynamic Modelling and Intelligent Balancing of Urban Sustainability and Tourism in the Ionian Islands",
+          "alternateName": "IonianDTwin: Ψηφιακό Δίδυμο για τη Δυναμική Μοντελοποίηση και την Ευφυή Εξισορρόπηση της Αστικής Βιωσιμότητας και του Τουρισμού των Ιονίων Νήσων",
+          "url": "https://ioniandtwin.di.ionio.gr/",
+          "identifier": "OPS 6061866",
+          "funder": {
+            "@type": "Organization",
+            "name": "European Regional Development Fund (ERDF) — Regional Programme Ionian Islands 2021–2027"
+          },
+          "sourceOrganization": { "@id": "https://ioniandtwin.di.ionio.gr/#org" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://ioniandtwin.di.ionio.gr/#org",
+          "name": "Ionian University — Department of Informatics",
+          "alternateName": "Ιόνιο Πανεπιστήμιο — Τμήμα Πληροφορικής",
+          "url": "https://ionio.gr/"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
@@ -22,11 +104,10 @@
         try {
           var p = localStorage.getItem("ioniandtwin.palette");
           var map = {
-            ocean: { c: "#F5F8FA", i: "#0A1930", d: "#050C17" },
-            emerald: { c: "#f9faf8", i: "#132a13", d: "#081c15" },
+            ocean: { c: "#F5F8FA", i: "#0A1930", d: "#1E221D" },
             clay: { c: "#f4f1e8", i: "#1e1d19", d: "#131210" },
           };
-          var v = map[p] || map.clay;
+          var v = map[p] || map.ocean;
           var s = document.documentElement.style;
           s.setProperty("--color-cream", v.c);
           s.setProperty("--color-ink", v.i);

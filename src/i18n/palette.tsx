@@ -8,9 +8,14 @@ import {
   type ReactNode,
 } from "react";
 
-/* ── Palette definitions ────────────────────────────────────────────── */
+/* ── Palette definitions ──────────────────────────────────────────────
+   Three themes defined, but the swap button only cycles between the
+   two visible ones (ocean ↔ mono):
+   · "mono"  — Monochrome (black & white, default)
+   · "ocean" — Ionian Cyan (alternate, blue)
+   · "clay"  — Ionian Clay (warm) — kept defined but NOT in the cycle  */
 export interface Palette {
-  id: "ocean" | "emerald" | "clay";
+  id: "ocean" | "clay" | "mono";
   label: string;
   swatch: string;
   /* surfaces */
@@ -25,14 +30,19 @@ export interface Palette {
   fog: string; // muted text
   line: string; // hairline / grid
   /* accents */
-  clay: string; // hero accent / terracotta
+  clay: string; // hero accent
   claydeep: string; // accent hover
-  sea: string; // primary CTA (emerald)
-  seadeep: string; // CTA hover
-  mist: string; // pale sage / secondary tint
+  sea: string; // secondary accent
+  seadeep: string; // secondary hover
+  mist: string; // pale tint
   gold: string; // data warning
 }
 
+/* Default theme — Monochrome (black & white). Data-viz figures (SVG
+   charts, dashboards, map dots) keep their colors in every theme;
+   only the interface chrome — surfaces, ink, accents — turns gray.
+   Dark sections stay on the brand moss-charcoal #1E221D so they
+   match the logo tile. */
 const OCEAN: Palette = {
   id: "ocean",
   label: "Ionian Cyan",
@@ -42,7 +52,7 @@ const OCEAN: Palette = {
   sand: "#D8E1EA",
   paper: "#FFFFFF",
   ink: "#0A1930",
-  ink2: "#050C17",
+  ink2: "#1E221D",
   smoke: "#3A4F6B",
   fog: "#7487A3",
   line: "#CDD9E6",
@@ -52,27 +62,6 @@ const OCEAN: Palette = {
   seadeep: "#041021",
   mist: "#B3E5FC",
   gold: "#F39C12",
-};
-
-const EMERALD: Palette = {
-  id: "emerald",
-  label: "Emerald Coast",
-  swatch: "#1B4332",
-  cream: "#F9FAF8",
-  cream2: "#EFF3EC",
-  sand: "#E5EAE3",
-  paper: "#FFFFFF",
-  ink: "#132A13",
-  ink2: "#081C15",
-  smoke: "#4A5A4A",
-  fog: "#7C8B7C",
-  line: "#DDE5DA",
-  clay: "#E05A47",
-  claydeep: "#C24434",
-  sea: "#1B4332",
-  seadeep: "#122E22",
-  mist: "#A7C4B5",
-  gold: "#C9A24B",
 };
 
 const CLAY: Palette = {
@@ -96,11 +85,34 @@ const CLAY: Palette = {
   gold: "#C9A24B",
 };
 
+const MONO: Palette = {
+  id: "mono",
+  label: "Monochrome",
+  swatch: "#111112",
+  cream: "#FFFFFF",
+  cream2: "#F2F2F3",
+  sand: "#E5E5E7",
+  paper: "#FFFFFF",
+  ink: "#000000",
+  ink2: "#101010",
+  smoke: "#2E2E31",
+  fog: "#6E6E73",
+  line: "#D9D9DC",
+  clay: "#0E0E10",
+  claydeep: "#000000",
+  sea: "#1A1A1C",
+  seadeep: "#000000",
+  mist: "#ECECED",
+  gold: "#55555A",
+};
+
 const PALETTES: Record<Palette["id"], Palette> = {
   ocean: OCEAN,
-  emerald: EMERALD,
   clay: CLAY,
+  mono: MONO,
 };
+
+const ORDER: Palette["id"][] = ["ocean", "mono"];
 
 const STORAGE_KEY = "ioniandtwin.palette";
 export type PaletteId = Palette["id"];
@@ -117,12 +129,12 @@ const Ctx = createContext<PaletteCtx | null>(null);
 function readInitial(): PaletteId {
   try {
     const v = window.localStorage.getItem(STORAGE_KEY);
-    if (v === "emerald") return "emerald";
-    if (v === "ocean") return "ocean";
+    if (v === "clay" || v === "mono") return v;
+    /* "ocean" or any legacy/unknown value falls through to default */
   } catch {
     /* storage unavailable */
   }
-  return "clay"; // clay is the default
+  return "mono"; // monochrome (b&w) is the default
 }
 
 export function PaletteProvider({ children }: { children: ReactNode }) {
@@ -146,6 +158,9 @@ export function PaletteProvider({ children }: { children: ReactNode }) {
     r.setProperty("--color-seadeep", palette.seadeep);
     r.setProperty("--color-mist", palette.mist);
     r.setProperty("--color-gold", palette.gold);
+    /* data-palette lets CSS scope monochrome-specific overrides
+       (e.g. re-light accent tokens inside the dark sections). */
+    document.documentElement.dataset.palette = palette.id;
   }, [palette]);
 
   useEffect(() => {
@@ -159,9 +174,10 @@ export function PaletteProvider({ children }: { children: ReactNode }) {
   const setPalette = useCallback((next: PaletteId) => setId(next), []);
   const toggle = useCallback(
     () =>
-      setId((cur) =>
-        cur === "clay" ? "ocean" : cur === "ocean" ? "emerald" : "clay"
-      ),
+      setId((cur) => {
+        const i = ORDER.indexOf(cur);
+        return ORDER[(i + 1) % ORDER.length];
+      }),
     []
   );
 

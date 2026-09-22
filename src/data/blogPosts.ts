@@ -144,20 +144,20 @@ export const BLOG_POSTS: BlogPost[] = [
       en: ["Press Release", "ERDF", "Ionian Region", "OPS 6061866", "Digital Twin", "GSTC v2.0", "Ionian University"],
     },
     title: {
-      el: "ΔΕΛΤΙΟ ΤΥΠΟΥ: Έναρξη υλοποίησης της Πράξης «IonianDTwin»",
-      en: "PRESS RELEASE: Official Launch of the \"IonianDTwin\" Project",
+      el: "Ένα «ψηφιακό δίδυμο» για τα Ιόνια Νησιά: το Ιόνιο Πανεπιστήμιο ξεκινά το έργο IonianDTwin για τον βιώσιμο τουρισμό",
+      en: "A “digital twin” for the Ionian Islands: Ionian University launches the IonianDTwin project for sustainable tourism",
     },
     subtitle: {
-      el: "Ψηφιακό Δίδυμο Χωρικής και Περιβαλλοντικής Νοημοσύνης για τη Βιωσιμότητα των Ιονίων Νήσων",
-      en: "Spatial and Environmental Intelligence Digital Twin for the Sustainability of the Ionian Islands",
+      el: "«IonianDTwin: Ψηφιακό Δίδυμο για τη Δυναμική Μοντελοποίηση και την Ευφυή Εξισορρόπηση της Αστικής Βιωσιμότητας και του Τουρισμού των Ιονίων Νήσων»",
+      en: "“IonianDTwin: Digital Twin for the Dynamic Modelling and Intelligent Balancing of Urban Sustainability and Tourism in the Ionian Islands”",
     },
     excerpt: {
-      el: "Ανακοινώνεται η επίσημη έναρξη υλοποίησης της ερευνητικής Πράξης «IonianDTwin» (Κωδικός ΟΠΣ: 6061866, Αριθμός Απόφασης Ένταξης: 34822) στο Περιφερειακό Πρόγραμμα «Ιόνια Νησιά 2021–2027», με συγχρηματοδότηση από το Ευρωπαϊκό Ταμείο Περιφερειακής Ανάπτυξης (ΕΤΠΑ).",
-      en: "Official launch of the research project \"IonianDTwin\" (OPS Code: 6061866, Inclusion Decision No: 34822) under the Regional Programme \"Ionian Islands 2021–2027\", co-funded by the European Regional Development Fund (ERDF).",
+      el: "Δεδομένα από δορυφόρους, αεροδρόμια, λιμάνια και ανοικτές πηγές θα δείχνουν έγκαιρα πού και πότε ο τουρισμός πιέζει τα νησιά, ώστε τα μέτρα να λαμβάνονται πριν η πίεση γίνει πρόβλημα.",
+      en: "Data from satellites, airports, ports and open sources will show early where and when tourism is pressuring the islands, so that measures are taken before pressure turns into a problem.",
     },
     lead: {
-      el: "Ανακοινώνεται η επίσημη έναρξη υλοποίησης της ερευνητικής Πράξης «IonianDTwin, Ψηφιακό Δίδυμο Χωρικής και Περιβαλλοντικής Νοημοσύνης για τη Βιωσιμότητα των Ιονίων Νήσων» (Κωδικός ΟΠΣ: 6061866, Αριθμός Απόφασης Ένταξης: 34822). Η Πράξη εντάσσεται στο Περιφερειακό Πρόγραμμα «Ιόνια Νησιά 2021–2027», στον άξονα προτεραιότητας «Έρευνα, Τεχνολογική Ανάπτυξη & Καινοτομία» (Ειδικός Στόχος RSO 1.1) και συγχρηματοδοτείται εξ ολοκλήρου από το Ευρωπαϊκό Ταμείο Περιφερειακής Ανάπτυξης (ΕΤΠΑ).",
-      en: "The official launch of the research project \"IonianDTwin, Spatial and Environmental Intelligence Digital Twin for the Sustainability of the Ionian Islands\" (OPS Code: 6061866, Inclusion Decision No: 34822) is hereby announced. The project is integrated into the Regional Programme \"Ionian Islands 2021–2027\", under the priority axis \"Research, Technological Development & Innovation\" (Specific Objective RSO 1.1) and is fully co-financed by the European Regional Development Fund (ERDF).",
+      el: "Το Τμήμα Πληροφορικής του Ιονίου Πανεπιστημίου ξεκίνησε την υλοποίηση του ερευνητικού έργου «IonianDTwin: Ψηφιακό Δίδυμο για τη Δυναμική Μοντελοποίηση και την Ευφυή Εξισορρόπηση της Αστικής Βιωσιμότητας και του Τουρισμού των Ιονίων Νήσων». Σκοπός του έργου είναι να αποκτήσουν η Περιφέρεια, οι Δήμοι, οι επιχειρήσεις και οι πολίτες ένα κοινό εργαλείο που δείχνει με μετρήσιμα δεδομένα πώς επηρεάζει ο τουρισμός τα νησιά. Έτσι η τουριστική ανάπτυξη θα μπορεί να συμβαδίζει με την προστασία του περιβάλλοντος και την ποιότητα ζωής των κατοίκων.",
+      en: "The Department of Informatics of the Ionian University has launched the research project “IonianDTwin: Digital Twin for the Dynamic Modelling and Intelligent Balancing of Urban Sustainability and Tourism in the Ionian Islands”. The project aims to give the Region, municipalities, businesses and citizens a shared tool that shows, with measurable data, how tourism affects the islands — so that tourism growth can go hand in hand with environmental protection and residents’ quality of life.",
     },
     highlights: {
       el: [
@@ -199,87 +199,200 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         title: {
-          el: "Σκοπός και Θεσμικό Πλαίσιο",
-          en: "Purpose and Institutional Framework",
+          el: "Η πρόκληση",
+          en: "The challenge",
         },
         paragraphs: {
           el: [
-            "Δικαιούχος και φορέας υλοποίησης της Πράξης είναι το Ιόνιο Πανεπιστήμιο, μέσω του Ειδικού Λογαριασμού Κονδυλίων Έρευνας (ΕΛΚΕ). Η συνολική δημόσια δαπάνη της Πράξης ανέρχεται σε €239.900,00 και συγχρηματοδοτείται εξ ολοκλήρου από το Ευρωπαϊκό Ταμείο Περιφερειακής Ανάπτυξης (ΕΤΠΑ) και Εθνικούς Πόρους.",
-            "Η πράξη αποσκοπεί στη δημιουργία μιας προηγμένης ψηφιακής υποδομής υψηλής ανάλυσης, η οποία θα αποτελέσει σημείο αναφοράς για την τεκμηριωμένη λήψη αποφάσεων σε περιφερειακό και τοπικό επίπεδο.",
+            "Τα Ιόνια Νησιά είναι από τους δημοφιλέστερους προορισμούς διεθνώς. Στην καλοκαιρινή αιχμή, η επισκεψιμότητα πιέζει τις υποδομές ύδρευσης, ενέργειας και μεταφορών, τις ακτές και τα θαλάσσια οικοσυστήματα, καθώς και την καθημερινότητα των μόνιμων κατοίκων. Τα στοιχεία που είναι σήμερα διαθέσιμα για τη διαχείριση αυτής της πίεσης είναι συνήθως αποσπασματικά και στατικά.",
           ],
           en: [
-            "The beneficiary and executing authority is Ionian University, through its Special Account for Research Funds (ELKE). The total public expenditure of the project amounts to €239,900.00, fully co-funded by the European Regional Development Fund (ERDF) and National Resources.",
-            "The initiative aims to build an advanced, high-resolution digital infrastructure that establishes an evidence-based foundation for regional and local policy decisions.",
-          ],
-        },
-        callout: {
-          el: "Η Πράξη εντάσσεται στον τομέα του τουρισμού και της περιβαλλοντικής προστασίας, ενισχύοντας την έρευνα και την εφαρμοσμένη τεχνολογική καινοτομία στην Περιφέρεια Ιονίων Νήσων.",
-          en: "The project addresses tourism sustainability and environmental resilience, reinforcing research excellence and applied technological innovation across the Ionian Islands.",
-        },
-      },
-      {
-        title: {
-          el: "Φυσικό Αντικείμενο και Αναγκαιότητα",
-          en: "Scope and Necessity",
-        },
-        paragraphs: {
-          el: [
-            "Η Περιφέρεια Ιονίων Νήσων αποτελεί έναν από τους πλέον διεθνώς προβεβλημένους τουριστικούς προορισμούς της χώρας. Ωστόσο, η έντονη εποχικότητα και η τουριστική πίεση επιβαρύνουν σημαντικά τις υποδομές, τα οικοσυστήματα και την ποιότητα ζωής των μόνιμων κατοίκων.",
-            "Για την αποτελεσματική διαχείριση αυτών των προκλήσεων απαιτούνται σύγχρονα υπολογιστικά εργαλεία πολυπαραγοντικής παρακολούθησης και πρόβλεψης. Το έργο IonianDTwin αναπτύσσει ένα ολοκληρωμένο σύστημα χωρικής και περιβαλλοντικής νοημοσύνης, βασισμένο στην τεχνολογία του Ψηφιακού Διδύμου (Digital Twin).",
-            "Το σύστημα διασυνδέει πάνω από 25 ψηφιακές ροές δεδομένων πραγματικού και σχεδόν πραγματικού χρόνου, τροφοδοτώντας 34 δυναμικούς δείκτες βιωσιμότητας. Οι δείκτες καλύπτουν 24 από τα 38 κριτήρια του διεθνούς προτύπου GSTC Destination Criteria v2.0 (Global Sustainable Tourism Council).",
-          ],
-          en: [
-            "The Region of Ionian Islands represents one of Greece's most prominent international tourism destinations. However, sharp seasonality and visitor saturation exert acute pressure on critical municipal infrastructures, fragile habitats, and the daily well-being of permanent island residents.",
-            "Effectively addressing these challenges requires modern computational tools capable of multi-factor monitoring and predictive forecasting. IonianDTwin implements an integrated spatial and environmental intelligence ecosystem based on state-of-the-art Digital Twin technology.",
-            "The system ingests over 25 live and near-real-time digital telemetry streams, feeding 34 dynamic sustainability indicators that cover 24 of the 38 destination criteria established by the international GSTC Destination Criteria v2.0 standard.",
+            "The Ionian Islands are among the world’s most popular destinations. At the summer peak, visitor numbers strain water, energy and transport infrastructure, beaches and marine ecosystems, as well as the daily life of permanent residents. The data currently available for managing this pressure is usually fragmented and static.",
           ],
         },
       },
       {
         title: {
-          el: "Αρχιτεκτονική: Τρεις Συντονισμένες Διεπαφές",
-          en: "Architecture: Three Coordinated Interfaces",
+          el: "Το ψηφιακό δίδυμο",
+          en: "The digital twin",
         },
         paragraphs: {
           el: [
-            "Το Ψηφιακό Δίδυμο IonianDTwin προσφέρει τρεις διακριτές πύλες πρόσβασης που καλύπτουν τις ανάγκες των φορέων διοίκησης, των πολιτών και των επιστημονικών ερευνητών:",
+            "Το IonianDTwin θα αναπτύξει ένα «ψηφιακό δίδυμο» του προορισμού, δηλαδή ένα διαρκώς ενημερούμενο ψηφιακό αντίγραφο των νησιών πάνω σε χάρτη. Θα συνδυάζει περισσότερες από 25 πηγές δεδομένων: ποιότητα αέρα και θάλασσας από το ευρωπαϊκό πρόγραμμα Copernicus, ύδατα κολύμβησης, μικροκλίμα, αφίξεις σε αεροδρόμια και λιμάνια, πληρότητα παραλιών, κυκλοφοριακή συμφόρηση, κάλυψη δικτύων κινητής και οικονομικά στοιχεία του τουρισμού. Από αυτά θα υπολογίζονται 34 δείκτες βιωσιμότητας, ευθυγραμμισμένοι με τα διεθνή κριτήρια του Global Sustainable Tourism Council (GSTC).",
+            "Μοντέλα μηχανικής μάθησης θα προβλέπουν την τουριστική ζήτηση, τη συμφόρηση και την επιβάρυνση των υποδομών. Μεγάλα Γλωσσικά Μοντέλα θα επιτρέπουν σε μη ειδικούς να αναζητούν πληροφορίες στο σύστημα με απλή, φυσική γλώσσα.",
           ],
           en: [
-            "The IonianDTwin digital twin is structured across three complementary user interfaces designed for regional authorities, citizens, and scientific stakeholders:",
+            "IonianDTwin will develop a “digital twin” of the destination — a continuously updated digital copy of the islands on a map. It will combine more than 25 data sources: air and sea quality from the European Copernicus programme, bathing waters, microclimate, airport and port arrivals, beach occupancy, traffic congestion, mobile network coverage and tourism economic data. From these, 34 sustainability indicators will be computed, aligned with the international criteria of the Global Sustainable Tourism Council (GSTC).",
+            "Machine learning models will forecast tourism demand, congestion and infrastructure load. Large Language Models will allow non-experts to query the system in plain, natural language.",
           ],
+        },
+      },
+      {
+        title: {
+          el: "Ποιοι ωφελούνται",
+          en: "Who benefits",
+        },
+        paragraphs: {
+          el: [],
+          en: [],
         },
         cards: [
           {
-            badge: { el: "Διεπαφή 1", en: "Interface 1" },
             title: {
-              el: "Κεντρικός Πίνακας Ελέγχου (Web Dashboard)",
-              en: "Central Web Platform (GIS Dashboard)",
+              el: "Η Περιφέρεια και οι Δήμοι",
+              en: "The Region and Municipalities",
             },
             description: {
-              el: "Προηγμένη γεωχωρική απεικόνιση GIS, πολυεπίπεδη επικάλυψη δεδομένων (περιβάλλον, θαλάσσια και αεροπορική κίνηση, υποδομές), θερμικοί χάρτες και προγνωστικά μοντέλα μηχανικής μάθησης.",
-              en: "High-resolution geospatial GIS visualization, layered multi-thematic overlays (environment, maritime, aviation, infrastructure), heatmaps, and ML predictive analytics.",
+              el: "Μέσω μιας κεντρικής πλατφόρμας παρακολούθησης, πρόβλεψης και ειδοποίησης που θα στηρίζει τον σχεδιασμό παρεμβάσεων.",
+              en: "Through a central monitoring, forecasting and alerting platform that will support the planning of interventions.",
             },
           },
           {
-            badge: { el: "Διεπαφή 2", en: "Interface 2" },
             title: {
-              el: "Εφαρμογή Κινητών Συσκευών (Mobile App)",
-              en: "Mobile Application (iOS & Android)",
+              el: "Οι πολίτες και οι επισκέπτες",
+              en: "Citizens and visitors",
             },
             description: {
-              el: "Ειδοποιήσεις πραγματικού χρόνου, συμμετοχική καταγραφή πολιτών (human-as-a-sensor), εναλλακτικές διαδρομές χαμηλής πίεσης, πλήρης προσβασιμότητα WCAG 2.0 AA και λειτουργία εκτός σύνδεσης.",
-              en: "Real-time environmental notifications, citizen crowdsourcing, alternative low-saturation activity routing, WCAG 2.0 AA accessibility compliance, and offline-first caching.",
+              el: "Μέσω μιας εφαρμογής για κινητά με ενημέρωση και ειδοποιήσεις για τις περιβαλλοντικές συνθήκες και τη συμφόρηση, στην οποία θα μπορούν και οι ίδιοι να συνεισφέρουν δεδομένα.",
+              en: "Through a mobile app with updates and alerts on environmental conditions and congestion, to which they will themselves be able to contribute data.",
             },
           },
           {
-            badge: { el: "Διεπαφή 3", en: "Interface 3" },
             title: {
-              el: "Διεπαφή Φυσικής Γλώσσας (LLM Query Interface)",
-              en: "Natural Language AI Interface (LLM & RAG)",
+              el: "Οι τουριστικές επιχειρήσεις",
+              en: "Tourism businesses",
             },
             description: {
-              el: "Απευθείας ερωτήσεις σε φυσική γλώσσα με τεχνολογία Retrieval-Augmented Generation (RAG) για άμεση παραγωγή τεκμηριωμένων αναλύσεων πολιτικής και απαντήσεων σε πραγματικό χρόνο.",
-              en: "Plain-language conversational queries powered by Retrieval-Augmented Generation (RAG), translating natural queries into verified spatial data and policy recommendations.",
+              el: "Με πρόσβαση σε αναλυτικά δεδομένα.",
+              en: "With access to analytical data.",
+            },
+          },
+          {
+            title: {
+              el: "Η ερευνητική κοινότητα",
+              en: "The research community",
+            },
+            description: {
+              el: "Με ανωνυμοποιημένα ανοικτά δεδομένα.",
+              en: "With anonymised open data.",
+            },
+          },
+        ],
+      },
+      {
+        title: {
+          el: "Πιλοτική εφαρμογή και επόμενα βήματα",
+          en: "Pilot deployment and next steps",
+        },
+        paragraphs: {
+          el: [
+            "Η πλατφόρμα θα δοκιμαστεί πιλοτικά σε πραγματικές συνθήκες κατά τη διάρκεια της τουριστικής περιόδου.",
+            "Κατά τους πρώτους μήνες υλοποίησης, η ομάδα του έργου θα συναντηθεί με τους αρμόδιους φορείς για να οριστικοποιηθεί το πλαίσιο των δεικτών. Κατά τη διάρκεια του έργου θα γίνουν επίσης θεματικά εργαστήρια ανοικτά στην τοπική κοινωνία.",
+          ],
+          en: [
+            "The platform will be pilot-tested under real conditions during the tourist season.",
+            "During the first months of implementation, the project team will meet the competent bodies to finalise the indicator framework. Thematic workshops open to the local community will also take place during the project.",
+          ],
+        },
+      },
+      {
+        title: {
+          el: "Ταυτότητα έργου",
+          en: "Project identity",
+        },
+        paragraphs: {
+          el: [],
+          en: [],
+        },
+        cards: [
+          {
+            title: {
+              el: "Τίτλος πράξης",
+              en: "Project title",
+            },
+            description: {
+              el: "«IonianDTwin: Ψηφιακό Δίδυμο για τη Δυναμική Μοντελοποίηση και την Ευφυή Εξισορρόπηση της Αστικής Βιωσιμότητας και του Τουρισμού των Ιονίων Νήσων»",
+              en: "“IonianDTwin: Digital Twin for the Dynamic Modelling and Intelligent Balancing of Urban Sustainability and Tourism in the Ionian Islands”",
+            },
+          },
+          {
+            title: {
+              el: "Δικαιούχος",
+              en: "Beneficiary",
+            },
+            description: {
+              el: "Ειδικός Λογαριασμός Κονδυλίων Έρευνας Ιονίου Πανεπιστημίου",
+              en: "Special Account for Research Funds of the Ionian University",
+            },
+          },
+          {
+            title: {
+              el: "Φορέας υλοποίησης",
+              en: "Implementing body",
+            },
+            description: {
+              el: "Τμήμα Πληροφορικής, Ιόνιο Πανεπιστήμιο",
+              en: "Department of Informatics, Ionian University",
+            },
+          },
+          {
+            title: {
+              el: "Επιστημονικός Υπεύθυνος",
+              en: "Scientific Coordinator",
+            },
+            description: {
+              el: "Καθηγητής Εμμανουήλ Μάγκος",
+              en: "Professor Emmanouel Magkos",
+            },
+          },
+          {
+            title: {
+              el: "Κωδικός ΟΠΣ",
+              en: "OPS Code",
+            },
+            description: {
+              el: "6061866",
+              en: "6061866",
+            },
+          },
+          {
+            title: {
+              el: "Προϋπολογισμός",
+              en: "Budget",
+            },
+            description: {
+              el: "239.900,00 €",
+              en: "€239,900.00",
+            },
+          },
+          {
+            title: {
+              el: "Διάρκεια",
+              en: "Duration",
+            },
+            description: {
+              el: "01/09/2026 – 31/03/2029",
+              en: "01/09/2026 – 31/03/2029",
+            },
+          },
+          {
+            title: {
+              el: "Πρόγραμμα",
+              en: "Programme",
+            },
+            description: {
+              el: "«Ιόνια Νησιά 2021–2027» — Η πράξη συγχρηματοδοτείται από το Ευρωπαϊκό Ταμείο Περιφερειακής Ανάπτυξης.",
+              en: "“Ionian Islands 2021–2027” — The project is co-funded by the European Regional Development Fund.",
+            },
+          },
+          {
+            title: {
+              el: "Ιστότοπος",
+              en: "Website",
+            },
+            description: {
+              el: "ioniandtwin.di.ionio.gr",
+              en: "ioniandtwin.di.ionio.gr",
             },
           },
         ],

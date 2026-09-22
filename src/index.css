@@ -1,28 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── IonianDTwin · Ionian Clay (default) ─────────────────────────────
-     Palettes are swapped at runtime by overriding these custom
-     properties on <html>; see src/i18n/palette.tsx.                     */
-  --color-cream: #F4F1E8;
-  --color-cream2: #ECE7D9;
-  --color-sand: #E3DBC6;
-  --color-paper: #FCFBF7;
-  --color-ink: #1E1D19;
-  --color-ink2: #131210;
-  --color-smoke: #5B584C;
-  --color-fog: #8D8A7D;
-  --color-line: #DDD8C9;
-  --color-clay: #C4633C;
-  --color-claydeep: #A54C2B;
-  --color-sea: #16626B;
-  --color-seadeep: #0C4149;
-  --color-mist: #A9C3BF;
-  --color-gold: #C9A24B;
+  /* ── IonianDTwin · Monochrome (b&w) (default) ──────────────────────
+     Compile-time fallback; Palettes are swapped at runtime by
+     overriding these custom properties on <html>;
+     see src/i18n/palette.tsx. Dark sections stay on the brand
+     moss-charcoal #1E221D to match the logo tile.                   */
+  --color-cream: #FFFFFF;
+  --color-cream2: #F2F2F3;
+  --color-sand: #E5E5E7;
+  --color-paper: #FFFFFF;
+  --color-ink: #000000;
+  --color-ink2: #101010;
+  --color-smoke: #2E2E31;
+  --color-fog: #6E6E73;
+  --color-line: #D9D9DC;
+  --color-clay: #0E0E10;
+  --color-claydeep: #000000;
+  --color-sea: #1A1A1C;
+  --color-seadeep: #000000;
+  --color-mist: #ECECED;
+  --color-gold: #55555A;
 
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Jura", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* ── Global scale ─────────────────────────────────────────────────────
@@ -119,7 +121,7 @@ video {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #ece7d9;
+  background: var(--color-cream2);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-fog);
@@ -127,13 +129,14 @@ video {
   border: 2px solid var(--color-cream2);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c4633c;
+  background: var(--color-claydeep);
 }
 
 /* ── Typography helpers ─────────────────────────────────────────────── */
 .display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 /* ── Balanced type scale ──────────────────────────────────────────────
@@ -184,7 +187,7 @@ video {
   display: none;
 }
 .eyebrow--dark {
-  color: #d99a78;
+  color: var(--color-mist);
 }
 
 /* ── Buttons ────────────────────────────────────────────────────────── */
@@ -355,9 +358,9 @@ video {
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    rgba(141, 138, 125, 0.55) 30%,
-    #fcfbf7 50%,
-    rgba(141, 138, 125, 0.55) 70%
+    rgba(123, 129, 119, 0.55) 30%,
+    #ffffff 50%,
+    rgba(123, 129, 119, 0.55) 70%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -485,18 +488,18 @@ video {
   font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.18em;
-  color: rgba(252, 251, 247, 0.72);
+  color: rgba(255, 255, 255, 0.78);
   text-shadow:
-    0 0 6px rgba(8, 33, 37, 0.95),
-    0 1px 2px rgba(8, 33, 37, 0.95);
+    0 0 6px rgba(20, 26, 20, 0.95),
+    0 1px 2px rgba(20, 26, 20, 0.95);
 }
 .leaflet-container .leaflet-tooltip.island-label::before {
   display: none;
 }
 .leaflet-container .leaflet-tooltip.dot-tip {
-  background: rgba(19, 18, 16, 0.94);
-  border: 1px solid rgba(252, 251, 247, 0.15);
-  color: #fcfbf7;
+  background: rgba(30, 34, 29, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -505,31 +508,31 @@ video {
   box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.65);
 }
 .leaflet-container .leaflet-tooltip-top.dot-tip::before {
-  border-top-color: rgba(19, 18, 16, 0.94);
+  border-top-color: rgba(30, 34, 29, 0.94);
 }
 .leaflet-container .leaflet-bar a {
-  background: #161512;
-  color: #fcfbf7;
-  border-bottom-color: rgba(252, 251, 247, 0.15);
+  background: #262c25;
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 .leaflet-container .leaflet-bar a:hover {
-  background: #c4633c;
-  color: #fcfbf7;
+  background: var(--color-claydeep);
+  color: #ffffff;
 }
 .leaflet-container .leaflet-control-attribution {
-  background: rgba(19, 18, 16, 0.72);
-  color: rgba(252, 251, 247, 0.35);
+  background: rgba(30, 34, 29, 0.72);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 8.5px;
   padding: 1px 6px;
 }
 .leaflet-container .leaflet-control-attribution a {
-  color: rgba(252, 251, 247, 0.55);
+  color: rgba(255, 255, 255, 0.55);
 }
 .leaflet-container .leaflet-control-scale-line {
-  background: rgba(19, 18, 16, 0.72);
-  border: 1px solid rgba(252, 251, 247, 0.3);
+  background: rgba(30, 34, 29, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-top: none;
-  color: rgba(252, 251, 247, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-family: var(--font-mono);
   font-size: 9px;
 }
@@ -571,5 +574,26 @@ video {
   transition: background-color 0.3s ease;
 }
 .row-hover:hover {
-  background-color: rgba(30, 29, 25, 0.035);
+  background-color: rgba(30, 34, 29, 0.05);
+}
+
+/* ── Monochrome palette overrides ────────────────────────────────────
+   The Monochrome theme (html[data-palette="mono"]) maps every design
+   token to neutral gray, but accent tokens also appear INSIDE the dark
+   sections. There a single "black" accent would vanish, so we re-declare
+   the accent tokens as light grays for the whole dark subtree — the
+   utilities resolve var(--color-*) at the element and inherit the new
+   values from any dark wrapper.                                    */
+html[data-palette="mono"] [class~="bg-ink"],
+html[data-palette="mono"] [class*="bg-ink2"],
+html[data-palette="mono"] [class~="bg-seadeep"],
+html[data-palette="mono"] [class*="bg-[#151915]"],
+html[data-palette="mono"] [class*="bg-[#1E221D]"],
+html[data-palette="mono"] [class*="bg-[#262C25]"],
+html[data-palette="mono"] [class*="bg-[#232824]"] {
+  --color-clay: #c9c9cc;
+  --color-claydeep: #e8e8ea;
+  --color-gold: #cfcfd2;
+  --color-sea: #d9d9dc;
+  --color-seadeep: #e8e8ea;
 }

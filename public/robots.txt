@@ -1,0 +1,5 @@
+# IonianDTwin — https://ioniandtwin.di.ionio.gr
+# Research project website, Ionian University · OPS 6061866
+User-agent: *
+Allow: /
+Sitemap: https://ioniandtwin.di.ionio.gr/sitemap.xml

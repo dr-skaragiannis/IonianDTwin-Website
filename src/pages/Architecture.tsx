@@ -4,7 +4,9 @@ import { useT } from "../i18n";
 import { useSubNav } from "../i18n/menu";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
 import ArchitectureExplorer from "../components/ArchitectureExplorer";
-import sensorStationImg from "../assets/sensor-station.jpg";
+
+/* Served from /public for a smaller HTML bundle + separate image caching. */
+const sensorStationImg = "./images/sensor-station.jpg";
 
 const TRAIT_ICONS = [Database, Radio, Activity, EyeOff];
 
@@ -40,7 +42,7 @@ export default function Architecture() {
       <section className="border-b border-line bg-cream py-24 md:py-28">
         <Container className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <figure className="relative overflow-hidden rounded-2xl border border-ink/12 shadow-[0_30px_60px_-28px_rgba(19,18,16,0.45)]">
+            <figure className="relative overflow-hidden rounded-2xl border border-ink/12 shadow-[0_30px_60px_-28px_rgba(30,34,29,0.45)]">
               <img
                 src={sensorStationImg}
                 alt={p.figTag}

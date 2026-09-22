@@ -88,8 +88,8 @@ export default function LLMDemo() {
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_40px_80px_-24px_rgba(19,18,16,0.45)]">
-      <div className="flex items-center justify-between border-b border-cream/10 bg-[#191814] px-5 py-3.5">
+    <div className="overflow-hidden rounded-2xl border border-ink/12 bg-ink2 shadow-[0_40px_80px_-24px_rgba(30,34,29,0.45)]">
+      <div className="flex items-center justify-between border-b border-cream/10 bg-[#262C25] px-5 py-3.5">
         <div className="flex items-center gap-2.5">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-clay/20">
             <Sparkles className="h-3.5 w-3.5 text-clay" strokeWidth={1.75} />
@@ -177,7 +177,7 @@ export default function LLMDemo() {
         ))}
       </div>
 
-      <form onSubmit={onSubmit} className="flex items-center gap-2 border-t border-cream/10 bg-[#191814] p-3.5">
+      <form onSubmit={onSubmit} className="flex items-center gap-2 border-t border-cream/10 bg-[#262C25] p-3.5">
         <input
           type="text"
           placeholder={l.placeholder}

@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vendor": "node scripts/vendor-assets.mjs",
+    "shells": "node scripts/generate-route-shells.mjs",
+    "deploy:public": "node scripts/vendor-assets.mjs && node scripts/generate-route-shells.mjs && vite build && node scripts/sync-public.mjs"
   },
   "dependencies": {
-    "@types/leaflet": "^1.9.22",
     "clsx": "2.1.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.47.0",
@@ -21,10 +23,12 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.17",
+    "@types/leaflet": "^1.9.22",
     "@types/node": "22.19.17",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
+    "sharp": "^0.35.4",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "vite": "7.3.2",

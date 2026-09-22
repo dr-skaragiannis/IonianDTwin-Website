@@ -70,7 +70,7 @@ export default function Navbar() {
           scrolled ? "max-h-0 opacity-0 pointer-events-none" : "max-h-12 opacity-100"
         }`}
       >
-        <Container className="flex h-9 items-center justify-between gap-4">
+        <Container wide="95" className="flex h-9 items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-cream/75">
             <EuFlag className="h-3.5 w-5 shrink-0" />
             <span className="truncate">{t.announce.text}</span>
@@ -95,7 +95,7 @@ export default function Navbar() {
             : "top-9 border-b border-transparent bg-transparent text-ink py-1"
         }`}
       >
-        <Container>
+        <Container wide="95">
           <div
             className={`flex items-center justify-between gap-4 transition-all duration-500 ${
               scrolled ? "h-14" : "h-16"
@@ -282,7 +282,7 @@ export default function Navbar() {
         <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
         <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-clay/10 blur-3xl" />
 
-        <Container className="relative flex h-16 shrink-0 items-center justify-between">
+        <Container wide="95" className="relative flex h-16 shrink-0 items-center justify-between">
           <Link to="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
             <LogoMark dark className="h-8 w-8" />
             <span className="display text-[17px] font-semibold">IonianDTwin</span>
@@ -300,7 +300,7 @@ export default function Navbar() {
           className="fs-menu-scroll relative flex-1 overflow-y-auto py-6"
           aria-label={t.nav.menuTitle}
         >
-          <Container className="flex flex-col gap-1">
+          <Container wide="95" className="flex flex-col gap-1">
             {menu.map((item, i) =>
               item.children ? (
                 <div key={item.label} className="border-b border-cream/10 py-2">
@@ -386,7 +386,7 @@ export default function Navbar() {
         </nav>
 
         <div className="relative shrink-0 border-t border-cream/10 py-4">
-          <Container className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          <Container wide="95" className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-cream/50">
               {t.nav.lead}
             </span>

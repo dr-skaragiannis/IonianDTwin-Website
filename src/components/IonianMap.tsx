@@ -20,9 +20,9 @@ export interface MapPoint {
 }
 
 export function dotColor(i: number) {
-  if (i >= 0.75) return "#E05A47";
-  if (i >= 0.5) return "#C9A24B";
-  return "#7FB5AD";
+  if (i >= 0.75) return "#E2470B";
+  if (i >= 0.5) return "#FABF5D";
+  return "#0086EA";
 }
 
 /**
@@ -116,7 +116,7 @@ export default function IonianMap({
       zoomControl={false}
       scrollWheelZoom={false}
       className="h-full w-full"
-      style={{ background: "#0b2a30" }}
+      style={{ background: "#1E221D" }}
       maxBounds={[
         [34.8, 17.2],
         [40.8, 24.8],
@@ -126,8 +126,7 @@ export default function IonianMap({
       keyboard={false}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        subdomains={["a", "b", "c", "d"]}
+        url={`${import.meta.env.BASE_URL}tiles/{z}/{x}/{y}.png`}
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/" target="_blank" rel="noreferrer">CARTO</a>'
       />
       <ZoomControl position="bottomright" />
@@ -176,7 +175,7 @@ export default function IonianMap({
                 click: () => onSelectPoint?.(p),
               }}
               pathOptions={{
-                color: isSelected ? "#ffffff" : "#082125",
+                color: isSelected ? "#ffffff" : "#1E221D",
                 weight: isSelected ? 2 : 1,
                 fillColor: dotColor(p.i),
                 fillOpacity: 0.95,

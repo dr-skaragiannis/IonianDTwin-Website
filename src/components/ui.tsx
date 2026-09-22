@@ -65,15 +65,25 @@ export function Wavy({ text, className = "" }: { text: string; className?: strin
 export function Container({
   children,
   className = "",
+  wide,
 }: {
   children: ReactNode;
   className?: string;
+  wide?: "90" | "95";
 }) {
   /* Content spans up to 80% of the viewport on large screens (capped on
-     ultrawide displays), growing from full-width on mobile. */
+     ultrawide displays), growing from full-width on mobile.
+     `wide` lifts the xl cap to 90% or 95% for full-bleed chrome
+     such as the main menu. */
+  const cap =
+    wide === "95"
+      ? "xl:max-w-[min(95%,100rem)]"
+      : wide === "90"
+        ? "xl:max-w-[min(90%,100rem)]"
+        : "xl:max-w-[min(80%,100rem)]";
   return (
     <div
-      className={`mx-auto w-full max-w-full px-5 md:px-8 xl:max-w-[min(80%,100rem)] ${className}`}
+      className={`mx-auto w-full max-w-full px-5 md:px-8 ${cap} ${className}`}
     >
       {children}
     </div>
@@ -299,10 +309,11 @@ export function PageHero({
           <Reveal delay={320}>
             <nav aria-label="Section" className="mt-10 flex flex-wrap gap-2">
               {subNav.map((s) => {
+                const path = location.pathname.replace(/\/+$/, "");
                 const active =
                   s.to === "/platform"
-                    ? location.pathname === "/platform"
-                    : location.pathname.startsWith(s.to);
+                    ? path === "/platform"
+                    : path.startsWith(s.to);
                 return (
                   <Link
                     key={s.to}
@@ -401,7 +412,14 @@ export function ArrowLink({
   );
 }
 
-/* ── Wordmark ───────────────────────────────────────────────────────── */
+/* ── Wordmark ─────────────────────────────────────────────────────────
+   Brand signal waves — always fixed, independent of palette:
+   #E2470B signal orange / #FABF5D amber / #0086EA azure
+   on deep moss-charcoal #1E221D. Even in Monochrome mode the mark
+   keeps its brand colours.                                              */
+export const BRAND_WAVES = ["#E2470B", "#FABF5D", "#0086EA"] as const;
+export const BRAND_INK = "#1E221D";
+
 export function LogoMark({
   className = "h-8 w-8",
   dark = false,
@@ -409,32 +427,31 @@ export function LogoMark({
   className?: string;
   dark?: boolean;
 }) {
-  /* On dark surfaces the ink rounded-square would vanish into the
+  /* On dark surfaces the rounded-square would vanish into the
      background, so we render the wave glyph alone at full width. */
   if (dark) {
     return (
       <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
         <path
           d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-          stroke="#d98a63"
+          stroke={BRAND_WAVES[0]}
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
         />
         <path
           d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-          stroke="#a9c3bf"
+          stroke={BRAND_WAVES[1]}
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
         />
         <path
           d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-          stroke="#fcfbf7"
+          stroke={BRAND_WAVES[2]}
           strokeWidth="2.25"
           fill="none"
           strokeLinecap="round"
-          opacity=".85"
         />
       </svg>
     );
@@ -442,28 +459,27 @@ export function LogoMark({
 
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <rect width="32" height="32" rx="8" fill="currentColor" />
+      <rect width="32" height="32" rx="8" fill={BRAND_INK} />
       <path
         d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-        stroke="var(--color-clay)"
+        stroke={BRAND_WAVES[0]}
         strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
       />
       <path
         d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-        stroke="var(--color-mist)"
+        stroke={BRAND_WAVES[1]}
         strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
       />
       <path
         d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0"
-        stroke="var(--color-paper)"
+        stroke={BRAND_WAVES[2]}
         strokeWidth="2.1"
         fill="none"
         strokeLinecap="round"
-        opacity=".85"
       />
     </svg>
   );

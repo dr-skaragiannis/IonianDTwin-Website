@@ -3,16 +3,15 @@ import { ArrowRight } from "lucide-react";
 import { useT, useC } from "../i18n";
 import { useSubNav } from "../i18n/menu";
 import { Container, PageHero, Reveal, SectionHead, Wavy } from "../components/ui";
-import crowdImg from "../assets/crowd.jpg";
-
-const CROWD_IMG = crowdImg;
+/* Served from /public for a smaller HTML bundle + separate image caching. */
+const CROWD_IMG = "./images/crowd.jpg";
 
 /** Higher score = stronger sustainability */
 function scoreColor(s: number) {
-  if (s >= 75) return "#4c7a4f";
-  if (s >= 60) return "#7fb5ad";
-  if (s >= 50) return "#c9a24b";
-  return "#c4633c";
+  if (s >= 75) return "#2F7D4A";
+  if (s >= 60) return "#0086EA";
+  if (s >= 50) return "#FABF5D";
+  return "#E2470B";
 }
 
 export default function Challenge() {
@@ -63,7 +62,7 @@ export default function Challenge() {
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {c.PILLARS.map((pill, i) => (
               <Reveal key={pill.title} delay={(i % 3) * 90}>
-                <div className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-7 transition-all duration-500 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_26px_52px_-24px_rgba(19,18,16,0.35)]">
+                <div className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-7 transition-all duration-500 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_26px_52px_-24px_rgba(30,34,29,0.35)]">
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-clay/10 text-clay transition-colors duration-300 group-hover:bg-clay group-hover:text-cream">
                       <pill.icon className="h-4.5 w-4.5" strokeWidth={1.75} />

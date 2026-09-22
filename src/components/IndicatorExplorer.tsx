@@ -24,7 +24,7 @@ export default function IndicatorExplorer() {
               aria-pressed={isActive}
               className={`group flex w-[11.5rem] shrink-0 items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-all duration-300 lg:w-auto lg:shrink lg:px-4 ${
                 isActive
-                  ? "border-clay/50 bg-paper shadow-[0_14px_36px_-18px_rgba(196,99,60,0.4)]"
+                  ? "border-clay/50 bg-paper shadow-[0_14px_36px_-18px_rgba(226,71,11,0.4)]"
                   : "border-line bg-paper/60 hover:bg-paper lg:border-transparent lg:bg-transparent"
               }`}
             >

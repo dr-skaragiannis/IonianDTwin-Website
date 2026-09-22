@@ -6,10 +6,10 @@ import { DemoBadge } from "./ui";
 function PhoneFrame({ children, className = "", dark = true }: { children: React.ReactNode; className?: string; dark?: boolean }) {
   return (
     <div
-      className={`relative w-[10.75rem] shrink-0 rounded-[2.2rem] border border-cream/15 bg-[#0b0a09] p-1.5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)] sm:w-[13.25rem] sm:p-2 lg:w-[15.5rem] lg:rounded-[2.6rem] lg:p-2 ${className}`}
+      className={`relative w-[10.75rem] shrink-0 rounded-[2.2rem] border border-cream/15 bg-[#151915] p-1.5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)] sm:w-[13.25rem] sm:p-2 lg:w-[15.5rem] lg:rounded-[2.6rem] lg:p-2 ${className}`}
     >
-      <div className={`relative h-[21.5rem] overflow-hidden rounded-[1.9rem] sm:h-[27rem] lg:h-[31.25rem] lg:rounded-[2.2rem] ${dark ? "bg-[#0d2b30]" : "bg-cream"}`}>
-        <div className="absolute left-1/2 top-2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-[#0b0a09] sm:w-24" />
+      <div className={`relative h-[21.5rem] overflow-hidden rounded-[1.9rem] sm:h-[27rem] lg:h-[31.25rem] lg:rounded-[2.2rem] ${dark ? "bg-[#1E221D]" : "bg-cream"}`}>
+        <div className="absolute left-1/2 top-2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-[#151915] sm:w-24" />
         {children}
       </div>
     </div>
@@ -30,11 +30,11 @@ function PhoneHome({ dark = true }: { dark?: boolean }) {
         </span>
       </div>
       <div className={`mx-4 mt-4 overflow-hidden rounded-2xl border ${dark ? "border-cream/10" : "border-line bg-paper"}`}>
-        <div className={`relative h-[110px] lg:h-[150px] ${dark ? "bg-[radial-gradient(120%_120%_at_30%_20%,#14454c_0%,#0a252b_70%)]" : "bg-[radial-gradient(120%_120%_at_30%_20%,#efe8d8_0%,#e0d6bf_75%)]"}`}>
+        <div className={`relative h-[110px] lg:h-[150px] ${dark ? "bg-[radial-gradient(120%_120%_at_30%_20%,#2E362E_0%,#1E221D_70%)]" : "bg-[radial-gradient(120%_120%_at_30%_20%,#E9EBE1_0%,#DADFCC_75%)]"}`}>
           {[
-            dark ? { x: "30%", y: "40%", c: "#e0673a" } : { x: "30%", y: "40%", c: "#c86443" },
-            dark ? { x: "55%", y: "60%", c: "#c9a24b" } : { x: "55%", y: "60%", c: "#d9943b" },
-            dark ? { x: "72%", y: "30%", c: "#7fb5ad" } : { x: "72%", y: "30%", c: "#5d8b84" },
+            { x: "30%", y: "40%", c: "#E2470B" },
+            { x: "55%", y: "60%", c: dark ? "#FABF5D" : "#C67E1A" },
+            { x: "72%", y: "30%", c: "#0086EA" },
           ].map((d, i) => (
             <span key={i} className="absolute h-2 w-2 rounded-full" style={{ left: d.x, top: d.y, background: d.c }} />
           ))}
@@ -75,7 +75,7 @@ function PhoneHome({ dark = true }: { dark?: boolean }) {
           ))}
         </div>
       </div>
-      <div className={`mt-auto flex items-center justify-around border-t px-4 py-3.5 ${dark ? "border-cream/10 bg-[#0b0a09]" : "border-line bg-cream"}`}>
+      <div className={`mt-auto flex items-center justify-around border-t px-4 py-3.5 ${dark ? "border-cream/10 bg-[#151915]" : "border-line bg-cream"}`}>
         {[MapIcon, Bell, Radar, Smartphone].map((I, i) => (
           <I key={i} className={`h-4 w-4 ${i === 0 ? "text-clay" : dark ? "text-cream/35" : "text-fog"}`} strokeWidth={1.75} />
         ))}
@@ -87,9 +87,9 @@ function PhoneHome({ dark = true }: { dark?: boolean }) {
 function PhoneAlerts({ dark = true }: { dark?: boolean }) {
   const ph = useT().mobile.phone;
   const alerts = [
-    { c: dark ? "#e0673a" : "#c86443", t: "78%", d: "Glyfada", w: "2′" },
-    { c: dark ? "#c9a24b" : "#d9943b", t: "NTU ↑", d: "Ag. Georgios", w: "24′" },
-    { c: dark ? "#7fb5ad" : "#5d8b84", t: "AQI 41", d: "Corfu", w: "3h" },
+    { c: "#E2470B", t: "78%", d: "Glyfada", w: "2′" },
+    { c: dark ? "#FABF5D" : "#C67E1A", t: "NTU ↑", d: "Ag. Georgios", w: "24′" },
+    { c: "#0086EA", t: "AQI 41", d: "Corfu", w: "3h" },
   ];
   return (
     <div className={`flex h-full flex-col ${dark ? "text-cream" : "text-ink"}`}>
@@ -126,7 +126,7 @@ function PhoneAlerts({ dark = true }: { dark?: boolean }) {
           {ph.reportBtn}
         </button>
       </div>
-      <div className={`mt-auto flex items-center justify-around border-t px-4 py-3.5 ${dark ? "border-cream/10 bg-[#0b0a09]" : "border-line bg-cream"}`}>
+      <div className={`mt-auto flex items-center justify-around border-t px-4 py-3.5 ${dark ? "border-cream/10 bg-[#151915]" : "border-line bg-cream"}`}>
         {[MapIcon, Bell, Radar, Smartphone].map((I, i) => (
           <I key={i} className={`h-4 w-4 ${i === 1 ? "text-clay" : dark ? "text-cream/35" : "text-fog"}`} strokeWidth={1.75} />
         ))}

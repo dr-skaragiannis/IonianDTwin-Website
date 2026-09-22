@@ -33,7 +33,7 @@ export default function RelatedProjectsPage() {
                   href={r.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-500 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_24px_48px_-22px_rgba(19,18,16,0.35)]"
+                  className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-500 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_24px_48px_-22px_rgba(30,34,29,0.35)]"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <p className="display text-lg font-medium leading-snug tracking-tight text-ink">
