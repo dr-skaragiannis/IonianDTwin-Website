@@ -1,4 +1,42 @@
-# IonianDTwin — deployment for `ioniandtwin.di.ionio.gr`
+# IonianDTwin — deployment
+
+Two targets are supported from the same source:
+
+| Target | URL | How |
+|---|---|---|
+| Production (Apache) | `https://ioniandtwin.di.ionio.gr/` | copy `public/` to the web root (below) |
+| GitHub Pages (preview) | `https://dr-skaragiannis.github.io/IonianDTwin-Website/` | automatic — `.github/workflows/pages.yml` |
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` runs on every push to `main` (and can be started by
+hand from the Actions tab). It installs dependencies, runs `npm run build` with
+`SITE_BASE` set to the Pages mount point and publishes `dist/` through the
+official `actions/deploy-pages` flow. The repository's Pages source is
+**GitHub Actions** (Settings → Pages), so no `gh-pages` branch is involved.
+
+The build is mount-point aware: `SITE_BASE` is stamped into `<base href>`,
+`src/basePath.ts` derives the router `basename` from it, and the route shells
+use links relative to their own depth — so one build works at the domain root
+*and* under `/IonianDTwin-Website/`. If a custom domain is ever attached to
+Pages, `actions/configure-pages` reports an empty base path and the build falls
+back to `/` automatically.
+
+## Brand & theme
+
+- Logo waves (top → bottom): terracotta `#C8502E`, sand `#E4B671`, Ionian blue
+  `#0F80C5` on the moss-charcoal tile `#1E221D`. Defined once in
+  `src/components/ui.tsx` (`BRAND_WAVES` / `BRAND_INK`), mirrored in
+  `public/favicon.svg` and `scripts/generate-route-shells.mjs`.
+- Default palette **"Ionian"** (`src/i18n/palette.tsx`): bone-white surfaces,
+  moss-charcoal ink, Ionian blue as the primary accent, terracotta and sand as
+  secondary accents. Monochrome and Ionian Cyan remain selectable.
+- Typography (`src/index.css`): Literata (display), IBM Plex Sans (body),
+  JetBrains Mono (labels) — self-hosted from `public/fonts/`, all with Greek
+  subsets. Fonts are copied from the pinned `@fontsource-variable/*` packages
+  by `node scripts/vendor-assets.mjs --fonts`; no Google Fonts request is made.
+
+## Production: `ioniandtwin.di.ionio.gr`
 
 ## Single source folder: `public/`
 
@@ -36,10 +74,16 @@ After deployment, verify:
 ## Regenerating static assets (sources live in `public/` + `scripts/`)
 
 ```bash
-node scripts/make-images.mjs          # favicon PNGs from public/favicon.svg (needs: npm i -D sharp)
+node scripts/vendor-assets.mjs --fonts # public/fonts from the @fontsource-variable packages
+node scripts/vendor-assets.mjs --tiles # CARTO basemap tiles (network)
+node scripts/make-images.mjs           # favicon PNGs from public/favicon.svg (uses devDependency sharp)
 node scripts/generate-route-shells.mjs # 15 route shells + 404.html from route metadata
 npm run build                          # copies public/ → dist/ and bundles the SPA
+npm run deploy:public                  # all of the above + sync dist/index.html → public/
 ```
+
+`og-image-el.jpg` / `og-image-en.jpg` are authored screenshots of the home page;
+re-capture them (1810×922 / 1775×966) whenever the visual design changes.
 
 Edit route titles/descriptions in `scripts/generate-route-shells.mjs`, re-run it,
 then rebuild. `sitemap.xml` lastmod should be bumped on content updates.

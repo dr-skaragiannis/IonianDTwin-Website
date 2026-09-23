@@ -9,13 +9,13 @@ import {
 } from "react";
 
 /* ── Palette definitions ──────────────────────────────────────────────
-   Three themes defined, but the swap button only cycles between the
-   two visible ones (ocean ↔ mono):
-   · "mono"  — Monochrome (black & white, default)
-   · "ocean" — Ionian Cyan (alternate, blue)
-   · "clay"  — Ionian Clay (warm) — kept defined but NOT in the cycle  */
+   Three themes, cycled by the swap button in this order:
+   · "ionian" — Ionian (default): warm bone surfaces, moss-charcoal ink
+                and the three brand colours of the logo waves
+   · "mono"   — Monochrome (black & white)
+   · "ocean"  — Ionian Cyan (cool blue)                                   */
 export interface Palette {
-  id: "ocean" | "clay" | "mono";
+  id: "ionian" | "mono" | "ocean";
   label: string;
   swatch: string;
   /* surfaces */
@@ -30,59 +30,51 @@ export interface Palette {
   fog: string; // muted text
   line: string; // hairline / grid
   /* accents */
-  clay: string; // hero accent
-  claydeep: string; // accent hover
+  clay: string; // primary accent (links, eyebrows, emphasis)
+  claydeep: string; // primary accent hover / deeper
   sea: string; // secondary accent
   seadeep: string; // secondary hover
-  mist: string; // pale tint
-  gold: string; // data warning
+  mist: string; // pale tint (labels & dots on dark surfaces)
+  gold: string; // data warning / highlight
 }
 
-/* Default theme — Monochrome (black & white). Data-viz figures (SVG
-   charts, dashboards, map dots) keep their colors in every theme;
-   only the interface chrome — surfaces, ink, accents — turns gray.
-   Dark sections stay on the brand moss-charcoal #1E221D so they
-   match the logo tile. */
-const OCEAN: Palette = {
-  id: "ocean",
-  label: "Ionian Cyan",
-  swatch: "#0A2240",
-  cream: "#F5F8FA",
-  cream2: "#E6ECF1",
-  sand: "#D8E1EA",
-  paper: "#FFFFFF",
-  ink: "#0A1930",
-  ink2: "#1E221D",
-  smoke: "#3A4F6B",
-  fog: "#7487A3",
-  line: "#CDD9E6",
-  clay: "#009ECE",
-  claydeep: "#007BA3",
-  sea: "#0A2240",
-  seadeep: "#041021",
-  mist: "#B3E5FC",
-  gold: "#F39C12",
-};
+/* ── Brand colours (from the logo) ────────────────────────────────────
+   Wave 1  #C8502E  terracotta
+   Wave 2  #E4B671  sand
+   Wave 3  #0F80C5  Ionian blue
+   Tile    #1E221D  moss-charcoal
+   Also exported from src/components/ui.tsx as BRAND_WAVES / BRAND_INK.  */
+export const BRAND = {
+  terracotta: "#C8502E",
+  sand: "#E4B671",
+  blue: "#0F80C5",
+  ink: "#1E221D",
+} as const;
 
-const CLAY: Palette = {
-  id: "clay",
-  label: "Ionian Clay",
-  swatch: "#C4633C",
-  cream: "#F4F1E8",
-  cream2: "#ECE7D9",
-  sand: "#E3DBC6",
-  paper: "#FCFBF7",
-  ink: "#1E1D19",
-  ink2: "#131210",
-  smoke: "#5B584C",
-  fog: "#8D8A7D",
-  line: "#DDD8C9",
-  clay: "#C4633C",
-  claydeep: "#A54C2B",
-  sea: "#16626B",
-  seadeep: "#0C4149",
-  mist: "#A9C3BF",
-  gold: "#C9A24B",
+/* Default theme — "Ionian". Bone-white surfaces with a faint warm cast,
+   moss-charcoal ink taken from the logo tile, Ionian blue as the primary
+   accent and terracotta / sand as secondary accents. Data-viz figures
+   (charts, dashboards, map dots) use the same three brand colours in every
+   theme; only the interface chrome changes when the palette is swapped. */
+const IONIAN: Palette = {
+  id: "ionian",
+  label: "Ionian",
+  swatch: BRAND.blue,
+  cream: "#F7F5EF",
+  cream2: "#EFECE4",
+  sand: "#EAE3D3",
+  paper: "#FFFFFF",
+  ink: BRAND.ink,
+  ink2: "#161915",
+  smoke: "#4A4F47",
+  fog: "#737870",
+  line: "#DED9CD",
+  clay: BRAND.blue,
+  claydeep: "#0B669E",
+  sea: BRAND.terracotta,
+  seadeep: "#A63F22",
+  mist: "#BFDDF0",
+  gold: BRAND.sand,
 };
 
 const MONO: Palette = {
@@ -106,13 +98,34 @@ const MONO: Palette = {
   gold: "#55555A",
 };
 
-const PALETTES: Record<Palette["id"], Palette> = {
-  ocean: OCEAN,
-  clay: CLAY,
-  mono: MONO,
+const OCEAN: Palette = {
+  id: "ocean",
+  label: "Ionian Cyan",
+  swatch: "#0A2240",
+  cream: "#F5F8FA",
+  cream2: "#E6ECF1",
+  sand: "#D8E1EA",
+  paper: "#FFFFFF",
+  ink: "#0A1930",
+  ink2: "#1E221D",
+  smoke: "#3A4F6B",
+  fog: "#7487A3",
+  line: "#CDD9E6",
+  clay: "#009ECE",
+  claydeep: "#007BA3",
+  sea: "#0A2240",
+  seadeep: "#041021",
+  mist: "#B3E5FC",
+  gold: "#F39C12",
 };
 
-const ORDER: Palette["id"][] = ["ocean", "mono"];
+const PALETTES: Record<Palette["id"], Palette> = {
+  ionian: IONIAN,
+  mono: MONO,
+  ocean: OCEAN,
+};
+
+export const PALETTE_ORDER: Palette["id"][] = ["ionian", "mono", "ocean"];
 
 const STORAGE_KEY = "ioniandtwin.palette";
 export type PaletteId = Palette["id"];
@@ -129,12 +142,12 @@ const Ctx = createContext<PaletteCtx | null>(null);
 function readInitial(): PaletteId {
   try {
     const v = window.localStorage.getItem(STORAGE_KEY);
-    if (v === "clay" || v === "mono") return v;
-    /* "ocean" or any legacy/unknown value falls through to default */
+    if (v === "mono" || v === "ocean") return v;
+    /* "ionian", legacy ids ("clay") or unknown values fall through */
   } catch {
     /* storage unavailable */
   }
-  return "mono"; // monochrome (b&w) is the default
+  return "ionian"; // the brand theme is the default
 }
 
 export function PaletteProvider({ children }: { children: ReactNode }) {
@@ -158,7 +171,7 @@ export function PaletteProvider({ children }: { children: ReactNode }) {
     r.setProperty("--color-seadeep", palette.seadeep);
     r.setProperty("--color-mist", palette.mist);
     r.setProperty("--color-gold", palette.gold);
-    /* data-palette lets CSS scope monochrome-specific overrides
+    /* data-palette lets CSS scope palette-specific overrides
        (e.g. re-light accent tokens inside the dark sections). */
     document.documentElement.dataset.palette = palette.id;
   }, [palette]);
@@ -175,8 +188,8 @@ export function PaletteProvider({ children }: { children: ReactNode }) {
   const toggle = useCallback(
     () =>
       setId((cur) => {
-        const i = ORDER.indexOf(cur);
-        return ORDER[(i + 1) % ORDER.length];
+        const i = PALETTE_ORDER.indexOf(cur);
+        return PALETTE_ORDER[(i + 1) % PALETTE_ORDER.length];
       }),
     []
   );

@@ -19,7 +19,7 @@
     <meta name="description" lang="en" content="IonianDTwin is a geospatial Digital Twin that continuously measures the sustainability of the Ionian Islands: ecosystems, water, energy, waste, biodiversity and cultural heritage. EU co-funded under the Ionian Islands 2021–2027 programme." />
     <meta name="author" content="Ionian University — Department of Informatics" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#0A1930" />
+    <meta name="theme-color" content="#1E221D" />
     <link rel="canonical" href="https://ioniandtwin.di.ionio.gr/" />
 
     <!-- Open Graph -->
@@ -55,7 +55,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Locally vendored fonts + tiles (offline deployment) -->
+    <!-- Self-hosted fonts + tiles (offline deployment; no third-party requests) -->
+    <link rel="preload" href="./fonts/literata-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/literata-greek-standard-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/ibm-plex-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/ibm-plex-sans-greek-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link href="./fonts/fonts.css" rel="stylesheet" />
 
     <!-- Structured data -->
@@ -104,10 +108,11 @@
         try {
           var p = localStorage.getItem("ioniandtwin.palette");
           var map = {
+            ionian: { c: "#F7F5EF", i: "#1E221D", d: "#161915" },
+            mono: { c: "#FFFFFF", i: "#000000", d: "#101010" },
             ocean: { c: "#F5F8FA", i: "#0A1930", d: "#1E221D" },
-            clay: { c: "#f4f1e8", i: "#1e1d19", d: "#131210" },
           };
-          var v = map[p] || map.ocean;
+          var v = map[p] || map.ionian;
           var s = document.documentElement.style;
           s.setProperty("--color-cream", v.c);
           s.setProperty("--color-ink", v.i);

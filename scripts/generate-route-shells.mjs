@@ -12,6 +12,11 @@
  * shell is opened straight from disk (file://) the redirect falls back to
  * the relative `index.html#/<path>/` form, which the app's file-mode
  * HashRouter understands.
+ *
+ * All in-site links, icons and the hand-off are written relative to the
+ * shell's own depth (../ per path segment), so the same output works at the
+ * domain root (ioniandtwin.di.ionio.gr) and under a sub-path such as GitHub
+ * project pages. Canonical / Open Graph URLs stay absolute on purpose.
  */
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
@@ -148,14 +153,19 @@ const ROUTES = [
   },
 ];
 
-const LOGO = `<svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1E221D"/><path d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="#E2470B" stroke-width="2.1" fill="none" stroke-linecap="round"/><path d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="#FABF5D" stroke-width="2.1" fill="none" stroke-linecap="round"/><path d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="#0086EA" stroke-width="2.1" fill="none" stroke-linecap="round"/></svg>`;
+/* Brand: logo waves terracotta / sand / Ionian blue on the moss-charcoal tile.
+   Keep in sync with public/favicon.svg and src/components/ui.tsx (BRAND_WAVES). */
+const BRAND = { wave1: "#C8502E", wave2: "#E4B671", wave3: "#0F80C5", ink: "#1E221D" };
+const LOGO = `<svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="${BRAND.ink}"/><path d="M6.5 10c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="${BRAND.wave1}" stroke-width="2.1" fill="none" stroke-linecap="round"/><path d="M6.5 16c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="${BRAND.wave2}" stroke-width="2.1" fill="none" stroke-linecap="round"/><path d="M6.5 22c3.1-2.4 6.4-2.4 9.5 0s6.4 2.4 9.5 0" stroke="${BRAND.wave3}" stroke-width="2.1" fill="none" stroke-linecap="round"/></svg>`;
 
-const CSS = `*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#F5F8FA;color:#0A1930;line-height:1.65}header.top{background:#0A1930;color:#fff;padding:18px 24px;display:flex;align-items:center;gap:14px}header.top a{color:#fff;text-decoration:none;font-weight:700;font-size:20px}.waves{height:6px;background:linear-gradient(90deg,#E2470B 0 33%,#FABF5D 33% 66%,#0086EA 66% 100%)}main{max-width:760px;margin:0 auto;padding:40px 24px 64px}.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#009ECE}h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:12px 0 8px}h2{font-size:22px;margin:36px 0 8px}p{color:#3A4F6B}.card{background:#fff;border:1px solid #CDD9E6;border-radius:14px;padding:20px 22px;margin:22px 0}.cta{display:inline-block;background:#009ECE;color:#fff!important;font-weight:700;text-decoration:none;padding:13px 28px;border-radius:999px;margin-top:10px}nav.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:26px 0}nav.links a{background:#fff;border:1px solid #CDD9E6;border-radius:10px;padding:10px 14px;color:#0A1930;text-decoration:none;font-size:14px}nav.links a:hover{border-color:#009ECE}footer{border-top:1px solid #CDD9E6;padding:26px 24px;text-align:center;font-size:13px;color:#7487A3;background:#fff}.facts{font-size:13px}.skip{position:absolute;left:-9999px}`;
+/* Mirrors the "Ionian" palette in src/i18n/palette.tsx (system fonts only —
+   shells must render before any web font is available). */
+const CSS = `*{box-sizing:border-box}body{margin:0;font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#F7F5EF;color:#1E221D;line-height:1.65}header.top{background:#1E221D;color:#fff;padding:18px 24px;display:flex;align-items:center;gap:14px}header.top a{color:#fff;text-decoration:none;font-weight:700;font-size:20px}.waves{height:6px;background:linear-gradient(90deg,${BRAND.wave1} 0 33%,${BRAND.wave2} 33% 66%,${BRAND.wave3} 66% 100%)}main{max-width:760px;margin:0 auto;padding:40px 24px 64px}.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0F80C5}h1{font-family:Literata,"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:500;font-size:clamp(28px,5vw,42px);line-height:1.15;letter-spacing:-.01em;margin:12px 0 8px}h2{font-family:Literata,"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:500;font-size:22px;margin:36px 0 8px}p{color:#4A4F47}.card{background:#fff;border:1px solid #DED9CD;border-radius:14px;padding:20px 22px;margin:22px 0}.cta{display:inline-block;background:#1E221D;color:#fff!important;font-weight:600;text-decoration:none;padding:13px 28px;border-radius:999px;margin-top:10px}.cta:hover{background:#0B669E}nav.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:26px 0}nav.links a{background:#fff;border:1px solid #DED9CD;border-radius:10px;padding:10px 14px;color:#1E221D;text-decoration:none;font-size:14px}nav.links a:hover{border-color:#0F80C5}footer{border-top:1px solid #DED9CD;padding:26px 24px;text-align:center;font-size:13px;color:#737870;background:#fff}.facts{font-size:13px}.skip{position:absolute;left:-9999px}`;
 
-function navLinks() {
+function navLinks(relRoot) {
   const items = [
-    ["", "Αρχική · Home"],
-    ...ROUTES.map((r) => ["/" + r.path + "/", r.crumb.join(" — ")]),
+    [relRoot, "Αρχική · Home"],
+    ...ROUTES.map((r) => [relRoot + r.path + "/", r.crumb.join(" — ")]),
   ];
   return items.map(([href, label]) => `<a href="${href}">${label}</a>`).join("");
 }
@@ -185,8 +195,10 @@ function jsonLd(r, url) {
 function shell(r) {
   const url = `${SITE}/${r.path}/`;
   const cleanPath = `/${r.path}/`;
-  const appUrl = `/?route=${cleanPath}`;
   const relRoot = "../".repeat(r.path.split("/").length);
+  /* Hand-off target is relative to the shell, so it resolves to the app's
+     index.html at whatever mount point the site is served from. */
+  const appUrl = `${relRoot}?route=${cleanPath}`;
   return `<!doctype html>
 <html lang="el">
 <head>
@@ -196,7 +208,7 @@ function shell(r) {
 <meta name="description" content="${r.ledeEl}" />
 <meta name="description" lang="en" content="${r.ledeEn}" />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#0A1930" />
+<meta name="theme-color" content="#1E221D" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="IonianDTwin" />
@@ -220,14 +232,14 @@ function shell(r) {
 <meta name="twitter:description" content="${r.ledeEn}" />
 <meta name="twitter:image" content="${SITE}/og-image-el.jpg" />
 <meta name="twitter:image:alt" content="IonianDTwin — Ψηφιακό Δίδυμο Ιονίων Νήσων / Digital Twin of the Ionian Islands" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href="${relRoot}favicon.svg" />
+<link rel="apple-touch-icon" href="${relRoot}apple-touch-icon.png" />
 <script type="application/ld+json">${JSON.stringify(jsonLd(r, url))}</script>
 <style>${CSS}</style>
 </head>
 <body>
 <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
-<header class="top">${LOGO}<a href="/">IonianDTwin</a></header>
+<header class="top">${LOGO}<a href="${relRoot}">IonianDTwin</a></header>
 <div class="waves" role="presentation"></div>
 <main id="main">
 <p class="eyebrow">${r.crumb.join(" · ")}</p>
@@ -235,17 +247,17 @@ function shell(r) {
 <p>${r.ledeEl}</p>
 <div class="card">
 <p style="margin-top:0"><strong>Διαδραστική εμπειρία:</strong> η πλήρης σελίδα με χάρτες, διαγράμματα και ζωντανά δεδομένα φορτώνει αυτόματα στην εφαρμογή IonianDTwin.</p>
-<a class="cta" href="${cleanPath}">Άνοιγμα στην εφαρμογή →</a>
+<a class="cta" href="${appUrl}">Άνοιγμα στην εφαρμογή →</a>
 </div>
 <h2>In English — ${r.titleEn}</h2>
 <p>${r.ledeEn}</p>
-<p><a href="${cleanPath}">Open the interactive page →</a></p>
+<p><a href="${appUrl}">Open the interactive page →</a></p>
 <h2>Περιεχόμενα · Contents</h2>
-<nav class="links" aria-label="Site">${navLinks()}</nav>
+<nav class="links" aria-label="Site">${navLinks(relRoot)}</nav>
 <div class="card facts"><p style="margin:0"><strong>Ταυτότητα έργου · Project identity:</strong><br />${FACTS_EL}<br />${FACTS_EN}</p></div>
 </main>
 <div class="waves" role="presentation"></div>
-<footer>IonianDTwin · Ιόνιο Πανεπιστήμιο — Τμήμα Πληροφορικής · OPS 6061866 · Συγχρηματοδότηση ΕΤΠΑ «Ιόνια Νησιά 2021–2027»<br /><a href="/">ioniandtwin.di.ionio.gr</a></footer>
+<footer>IonianDTwin · Ιόνιο Πανεπιστήμιο — Τμήμα Πληροφορικής · OPS 6061866 · Συγχρηματοδότηση ΕΤΠΑ «Ιόνια Νησιά 2021–2027»<br /><a href="${relRoot}">ioniandtwin.di.ionio.gr</a></footer>
 <script>(function(){try{location.replace(location.protocol==="file:"?"${relRoot}index.html#${cleanPath}":"${appUrl}");}catch(e){}})();</script>
 </body>
 </html>
@@ -260,27 +272,34 @@ const NOT_FOUND = `<!doctype html>
 <title>Η σελίδα δεν βρέθηκε — IonianDTwin</title>
 <meta name="description" content="Η σελίδα που ζητήσατε δεν υπάρχει. Επιστρέψτε στην αρχική του IonianDTwin." />
 <meta name="robots" content="noindex, follow" />
-<meta name="theme-color" content="#0A1930" />
+<meta name="theme-color" content="#1E221D" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <style>${CSS}</style>
 </head>
 <body>
-<header class="top">${LOGO}<a href="/">IonianDTwin</a></header>
+<header class="top">${LOGO}<a href="/" data-home>IonianDTwin</a></header>
 <div class="waves" role="presentation"></div>
 <main>
 <p class="eyebrow">404</p>
 <h1>Η σελίδα δεν βρέθηκε</h1>
 <p>Η διεύθυνση που ζητήσατε δεν αντιστοιχεί σε περιεχόμενο. Αν ακολουθήσατε σύνδεσμο της εφαρμογής, θα μεταφερθείτε αυτόματα — διαφορετικά, επιστρέψτε στην αρχική.</p>
-<p><a class="cta" href="/">Αρχική σελίδα →</a></p>
+<p><a class="cta" href="/" data-home>Αρχική σελίδα →</a></p>
 <h2>Περιεχόμενα · Contents</h2>
-<nav class="links" aria-label="Site">${navLinks()}</nav>
+<nav class="links" aria-label="Site" data-links>${navLinks("/")}</nav>
 </main>
 <div class="waves" role="presentation"></div>
 <footer>IonianDTwin · Ιόνιο Πανεπιστήμιο — Τμήμα Πληροφορικής · OPS 6061866</footer>
-<script>(function(){try{var p=location.pathname.replace(/\\/$/,"");var known=${JSON.stringify([
-  "",
-  ...ROUTES.map((r) => "/" + r.path),
-])};if(known.indexOf(p)>0){location.replace(location.protocol==="file:"?"index.html#"+p+"/":"/?route="+p+"/");}}catch(e){}})();</script>
+<script>(function(){try{
+/* A 404 page is served at any URL, so the site root is unknown at author
+   time. Match the request against the known app routes by suffix: the
+   remainder is the mount point ("" at the domain root, "/<repo>" on GitHub
+   Pages). Unknown paths keep root-absolute links. */
+var p=location.pathname.replace(/\\/+$/,"");var known=${JSON.stringify(ROUTES.map((r) => "/" + r.path))};
+var base="",route=null;for(var i=0;i<known.length;i++){if(p===known[i]||p.slice(-known[i].length)===known[i]){route=known[i];base=p.slice(0,p.length-known[i].length);break;}}
+var root=base+"/";var els=document.querySelectorAll("[data-home],[data-links] a");for(var j=0;j<els.length;j++){var h=els[j].getAttribute("href");if(h&&h.charAt(0)==="/")els[j].setAttribute("href",root+h.slice(1));}
+var ic=document.querySelector('link[rel="icon"]');if(ic)ic.setAttribute("href",root+"favicon.svg");
+if(route!==null){location.replace(location.protocol==="file:"?"index.html#"+route+"/":root+"?route="+route+"/");}
+}catch(e){}})();</script>
 </body>
 </html>
 `;

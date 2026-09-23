@@ -1,0 +1,73 @@
+# Builds the static site and publishes it to GitHub Pages.
+#
+# The Pages source must be set to "GitHub Actions" (Settings → Pages), which
+# lets any branch listed below deploy. The build is stamped with the Pages
+# mount point (SITE_BASE), so the same code serves both
+#   https://<owner>.github.io/<repo>/      (project pages, sub-path)
+#   https://ioniandtwin.di.ionio.gr/       (custom domain / Apache, root)
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - arena/01a0c8d5-ioniandtwin-website
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; don't cancel a deploy that is already in flight.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # `enablement` switches the repository's Pages source to "GitHub Actions"
+      # on first run (no-op afterwards).
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # public/ (shells, fonts, tiles, icons) is copied into dist/ by Vite and
+      # the SPA is bundled into dist/index.html. base_path is "/<repo>" for
+      # project pages and "" when a custom domain is configured.
+      - name: Build static site
+        run: npm run build
+        env:
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

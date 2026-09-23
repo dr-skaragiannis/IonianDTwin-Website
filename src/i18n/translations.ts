@@ -508,7 +508,7 @@ export const EN = {
     cookieNote: "localStorage entries are stored locally in your browser and are never transmitted to our servers. They contain only a language or theme preference and no personal or identifying data. You can clear them at any time through your browser's settings.",
     scriptHeading: "Scripts and external resources",
     scripts: [
-      { name: "Google Fonts", layer: "Third-party", purpose: "Serves the typography (Jura, Manrope, JetBrains Mono) used on the site. Your device requests the font files from Google's servers, which may see your IP address.", provider: "Google Fonts / fonts.googleapis.com" },
+      { name: "Web fonts (self-hosted)", layer: "First-party", purpose: "The typography used on the site (Literata, IBM Plex Sans, JetBrains Mono) is served from this website's own server. No font request is made to Google or any other third party.", provider: "IonianDTwin — ioniandtwin.di.ionio.gr" },
       { name: "Map tiles (CARTO / OpenStreetMap)", layer: "Third-party", purpose: "Loads the interactive basemap tiles for the Digital Twin map. Your device requests tile images from the CARTO CDN, which may see your IP address and the tiles you view.", provider: "basemaps.cartocdn.com / openstreetmap.org" },
       { name: "Contact form", layer: "First-party", purpose: "Collects the data you submit (name, email, organisation, message) solely to respond to your enquiry. No data is stored in cookies or sent to third parties.", provider: "IonianDTwin consortium" },
     ],
@@ -1095,7 +1095,7 @@ export const EL: Dict = {
     cookieNote: "Οι καταχωρήσεις localStorage αποθηκεύονται τοπικά στον browser σας και δεν μεταδίδονται ποτέ στους διακομιστές μας. Περιέχουν μόνο προτίμηση γλώσσας ή θέματος και κανένα προσωπικό ή ταυτοποιητικό δεδομένο. Μπορείτε να τις διαγράψετε ανά πάσα στιγμή μέσω των ρυθμίσεων του browser σας.",
     scriptHeading: "Scripts και εξωτερικοί πόροι",
     scripts: [
-      { name: "Google Fonts", layer: "Τρίτο μέρος", purpose: "Εξυπηρετεί τις γραμματοσειρές (Jura, Manrope, JetBrains Mono) που χρησιμοποιούνται στον ιστότοπο. Η συσκευή σας ζητά τα αρχεία γραμματοσειρών από τους διακομιστές της Google, οι οποίοι ενδέχεται να δουν τη διεύθυνση IP σας.", provider: "Google Fonts / fonts.googleapis.com" },
+      { name: "Γραμματοσειρές (αυτοφιλοξενούμενες)", layer: "Πρώτο μέρος", purpose: "Οι γραμματοσειρές του ιστότοπου (Literata, IBM Plex Sans, JetBrains Mono) εξυπηρετούνται από τον ίδιο τον διακομιστή του ιστότοπου. Δεν γίνεται κανένα αίτημα γραμματοσειρών προς την Google ή άλλο τρίτο μέρος.", provider: "IonianDTwin — ioniandtwin.di.ionio.gr" },
       { name: "Χάρτες (CARTO / OpenStreetMap)", layer: "Τρίτο μέρος", purpose: "Φορτώνει τα διαδραστικά tiles του βασικού χάρτη για τον χάρτη του Ψηφιακού Διδύμου. Η συσκευή σας ζητά εικόνες tiles από το CDN της CARTO, το οποίο ενδέχεται να δει τη διεύθυνση IP σας και τα tiles που προβάλλετε.", provider: "basemaps.cartocdn.com / openstreetmap.org" },
       { name: "Φόρμα επικοινωνίας", layer: "Πρώτο μέρος", purpose: "Συλλέγει τα δεδομένα που υποβάλλετε (ονοματεπώνυμο, email, οργανισμός, μήνυμα) αποκλειστικά για την απάντηση στο αίτημά σας. Δεν αποθηκεύονται δεδομένα σε cookies ούτε διαβιβάζονται σε τρίτους.", provider: "Κοινοπραξία IonianDTwin" },
     ],

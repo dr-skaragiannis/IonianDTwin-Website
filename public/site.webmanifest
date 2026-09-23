@@ -6,25 +6,25 @@
   "start_url": "https://ioniandtwin.di.ionio.gr/",
   "scope": "https://ioniandtwin.di.ionio.gr/",
   "display": "standalone",
-  "background_color": "#0A1930",
-  "theme_color": "#0A1930",
+  "background_color": "#F7F5EF",
+  "theme_color": "#1E221D",
   "lang": "el",
   "dir": "ltr",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

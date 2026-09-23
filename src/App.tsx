@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BASE_PATH } from "./basePath";
 import SeoSync from "./components/SeoSync";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -30,12 +31,16 @@ function ScrollToTop() {
 }
 
 /* Clean URLs need a server; when the site is opened straight from disk
- * (file://) fall back to hash routing so menu links resolve locally. */
-const Router = window.location.protocol === "file:" ? HashRouter : BrowserRouter;
+ * (file://) fall back to hash routing so menu links resolve locally.
+ * Over HTTP the router is mounted under BASE_PATH so the same build works
+ * at the domain root and under a sub-path (e.g. GitHub project pages). */
+const isFile = window.location.protocol === "file:";
+const Router = isFile ? HashRouter : BrowserRouter;
+const routerProps = isFile ? {} : { basename: BASE_PATH || undefined };
 
 export default function App() {
   return (
-    <Router>
+    <Router {...routerProps}>
       <SeoSync />
       <ScrollToTop />
       <div className="flex min-h-screen flex-col bg-cream">
