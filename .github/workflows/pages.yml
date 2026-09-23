@@ -2,8 +2,8 @@
 #
 # ONE-TIME SETUP (repository admin): Settings → Pages → "Build and deployment"
 # → Source: "GitHub Actions". Creating the Pages site needs admin rights that
-# neither this workflow's GITHUB_TOKEN nor an app token has, so the first run
-# fails at "Configure Pages" until that switch is flipped; re-run it afterwards. The build is stamped with the Pages
+# neither this workflow's GITHUB_TOKEN nor an app token has, so until that
+# switch is flipped the build job succeeds but the deploy job fails. The build is stamped with the Pages
 # mount point (SITE_BASE), so the same code serves both
 #   https://<owner>.github.io/<repo>/      (project pages, sub-path)
 #   https://ioniandtwin.di.ionio.gr/       (custom domain / Apache, root)
@@ -42,11 +42,13 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      # `enablement` switches the repository's Pages source to "GitHub Actions"
-      # on first run (no-op afterwards).
+      # Reports the Pages mount point ("/<repo>" for project pages, "" with a
+      # custom domain). Allowed to fail so the build is still verified before
+      # Pages has been switched on; the deploy job then fails on its own.
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v6
+        continue-on-error: true
         with:
           enablement: true
 
@@ -56,7 +58,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          SITE_BASE: ${{ steps.pages.outputs.base_path }}/
+          SITE_BASE: ${{ steps.pages.outputs.base_path || format('/{0}', github.event.repository.name) }}/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
