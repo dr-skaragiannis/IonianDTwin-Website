@@ -144,7 +144,7 @@ export default function DashboardMock() {
   }, [layer, selectedIsland]);
 
   const arcLen = Math.PI * 60;
-  const gaugeColor = gauge >= 75 ? "#E2470B" : gauge >= 55 ? "#FABF5D" : "#0086EA";
+  const gaugeColor = gauge >= 75 ? "#C8502E" : gauge >= 55 ? "#E4B671" : "#0F80C5";
   const labels = Object.keys(LAYER_ICONS) as LayerId[];
 
   // Filtered points
@@ -159,19 +159,19 @@ export default function DashboardMock() {
   // Alerts per layer
   const ALERTS_DATA: Record<LayerId, { color: string; station: string; issue: string; time: string }[]> = {
     environment: [
-      { color: "#E2470B", station: "Glyfada · Corfu", issue: isEl ? "Υπέρβαση PM2.5 (38 µg/m³)" : "PM2.5 threshold alert (38 µg/m³)", time: "2′" },
-      { color: "#E2470B", station: "Navagio · Zakynthos", issue: isEl ? "Αυξημένη θολότητα υδάτων (4.8 NTU)" : "Turbidity spike in bay (4.8 NTU)", time: "18′" },
-      { color: "#FABF5D", station: "Paleokastritsa · Corfu", issue: isEl ? "Χλωροφύλλη-a σε ζώνη επιτήρησης" : "Chlorophyll-a watch band", time: "44′" },
+      { color: "#C8502E", station: "Glyfada · Corfu", issue: isEl ? "Υπέρβαση PM2.5 (38 µg/m³)" : "PM2.5 threshold alert (38 µg/m³)", time: "2′" },
+      { color: "#C8502E", station: "Navagio · Zakynthos", issue: isEl ? "Αυξημένη θολότητα υδάτων (4.8 NTU)" : "Turbidity spike in bay (4.8 NTU)", time: "18′" },
+      { color: "#E4B671", station: "Paleokastritsa · Corfu", issue: isEl ? "Χλωροφύλλη-a σε ζώνη επιτήρησης" : "Chlorophyll-a watch band", time: "44′" },
     ],
     transport: [
-      { color: "#E2470B", station: "Corfu Port", issue: isEl ? "Ταυτόχρονη άφιξη 3 κρουαζιερόπλοιων" : "Concurrent arrival: 3 cruise ships", time: "5′" },
-      { color: "#FABF5D", station: "Zakynthos Port", issue: isEl ? "Καθυστέρηση επιβίβασης πορθμείου" : "Ferry embarkation dwell spike", time: "26′" },
-      { color: "#0086EA", station: "CFU Airport", issue: isEl ? "Κανονική ροή αφίξεων (42/ημέρα)" : "Normal arrival rate (42 flights/day)", time: "1h" },
+      { color: "#C8502E", station: "Corfu Port", issue: isEl ? "Ταυτόχρονη άφιξη 3 κρουαζιερόπλοιων" : "Concurrent arrival: 3 cruise ships", time: "5′" },
+      { color: "#E4B671", station: "Zakynthos Port", issue: isEl ? "Καθυστέρηση επιβίβασης πορθμείου" : "Ferry embarkation dwell spike", time: "26′" },
+      { color: "#0F80C5", station: "CFU Airport", issue: isEl ? "Κανονική ροή αφίξεων (42/ημέρα)" : "Normal arrival rate (42 flights/day)", time: "1h" },
     ],
     infrastructure: [
-      { color: "#E2470B", station: "Corfu Town", issue: isEl ? "Κορεσμός πεζών Παλαιού Φρουρίου (0.90)" : "Old Fortress pedestrian saturation (0.90)", time: "8′" },
-      { color: "#FABF5D", station: "Zakynthos Town", issue: isEl ? "Πτώση πίεσης δικτύου ύδρευσης (2.1 bar)" : "Water grid pressure drop (2.1 bar)", time: "31′" },
-      { color: "#0086EA", station: "Argostoli · Kefalonia", issue: isEl ? "Πληρότητα κάδων παραλίας στο 78%" : "Beach smart-bin fill rate at 78%", time: "2h" },
+      { color: "#C8502E", station: "Corfu Town", issue: isEl ? "Κορεσμός πεζών Παλαιού Φρουρίου (0.90)" : "Old Fortress pedestrian saturation (0.90)", time: "8′" },
+      { color: "#E4B671", station: "Zakynthos Town", issue: isEl ? "Πτώση πίεσης δικτύου ύδρευσης (2.1 bar)" : "Water grid pressure drop (2.1 bar)", time: "31′" },
+      { color: "#0F80C5", station: "Argostoli · Kefalonia", issue: isEl ? "Πληρότητα κάδων παραλίας στο 78%" : "Beach smart-bin fill rate at 78%", time: "2h" },
     ],
   };
 
@@ -336,7 +336,7 @@ export default function DashboardMock() {
             </p>
             <div
               className="mt-2 h-1.5 w-28 rounded-full sm:w-40"
-              style={{ background: "linear-gradient(90deg,#0086EA,#FABF5D,#E2470B)" }}
+              style={{ background: "linear-gradient(90deg,#0F80C5,#E4B671,#C8502E)" }}
             />
             <div className="mt-1.5 flex justify-between font-mono text-[0.625rem] text-cream/45 sm:text-[0.6875rem]">
               <span>{d.low}</span>
@@ -385,7 +385,7 @@ export default function DashboardMock() {
                   textAnchor="middle"
                   fontSize="28"
                   fontWeight="600"
-                  fontFamily="Jura, sans-serif"
+                  fontFamily="Commissioner, 'IBM Plex Sans', sans-serif"
                   fill="#ffffff"
                 >
                   {Math.round(gauge)}
@@ -416,9 +416,9 @@ export default function DashboardMock() {
 
           {/* Key telemetry metrics */}
           {[
-            { label: d.aqi, value: String(aqi), unit: "/100", data: [52, 50, 49, 47, 45, 44, 43, aqi], color: "#0086EA" },
-            { label: d.crowd, value: crowd.toFixed(2), unit: "", data: [0.61, 0.66, 0.7, 0.68, 0.75, 0.79, 0.8, crowd], color: "#FABF5D" },
-            { label: d.seaTemp, value: "24.6", unit: "°C", data: [23.1, 23.4, 23.6, 23.9, 24.1, 24.3, 24.5, 24.6], color: "#0086EA" },
+            { label: d.aqi, value: String(aqi), unit: "/100", data: [52, 50, 49, 47, 45, 44, 43, aqi], color: "#0F80C5" },
+            { label: d.crowd, value: crowd.toFixed(2), unit: "", data: [0.61, 0.66, 0.7, 0.68, 0.75, 0.79, 0.8, crowd], color: "#E4B671" },
+            { label: d.seaTemp, value: "24.6", unit: "°C", data: [23.1, 23.4, 23.6, 23.9, 24.1, 24.3, 24.5, 24.6], color: "#0F80C5" },
           ].map((m) => (
             <div key={m.label} className="flex items-center justify-between gap-3 px-5 py-3">
               <div>
@@ -566,12 +566,12 @@ export default function DashboardMock() {
           <polyline
             points={fcstPts}
             fill="none"
-            stroke="#E2470B"
+            stroke="#C8502E"
             strokeWidth="1.8"
             strokeDasharray="5 5"
             strokeLinecap="round"
           />
-          <circle cx={xOf(total - 1)} cy={yOf(FCST[FCST.length - 1])} r="3.5" fill="#E2470B" />
+          <circle cx={xOf(total - 1)} cy={yOf(FCST[FCST.length - 1])} r="3.5" fill="#C8502E" />
         </svg>
       </div>
 

@@ -1,12 +1,15 @@
 /* Vendors third-party runtime assets locally so the site deploys fully offline.
- * Run: node scripts/vendor-assets.mjs
- * Downloads:
- *   1. Google Fonts (Jura, Manrope, JetBrains Mono)  -> public/fonts/fonts.css + *.woff2
+ * Run: node scripts/vendor-assets.mjs [--fonts] [--tiles]
+ * Produces:
+ *   1. Web fonts (Commissioner, IBM Plex Sans, JetBrains Mono) -> public/fonts/fonts.css + *.woff2
+ *      Copied from the pinned `@fontsource-variable/*` devDependencies (npm), so the
+ *      exact font build is locked by package-lock.json and no request to Google Fonts
+ *      is ever needed — at build time or at runtime.
  *   2. CARTO dark_all basemap tiles (z6-z12, Ionian bbox) -> public/tiles/{z}/{x}/{y}.png
- * Idempotent: existing tiles/fonts are skipped.
+ * Idempotent: existing tiles are skipped; the fonts folder is rebuilt every run.
  */
-import { randomBytes, createHash } from "crypto";
-import { mkdirSync, writeFileSync, existsSync, statSync } from "fs";
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync, existsSync, statSync } from "fs";
+import { createRequire } from "module";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -14,9 +17,20 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const pub = join(root, "public");
 const FONT_DIR = join(pub, "fonts");
 const TILE_DIR = join(pub, "tiles");
+const require = createRequire(import.meta.url);
 
-const FONTS_CSS_URL =
-  "https://fonts.googleapis.com/css2?family=Jura:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap";
+/* Typography system (see src/index.css @theme):
+ *   display  → Commissioner    (variable: wght 100–900; Greek-native humanist sans)
+ *   body     → IBM Plex Sans   (variable: wght 100–700, italics)
+ *   labels   → JetBrains Mono  (variable: wght 100–800)
+ * The site is Greek-first, so every family must ship a Greek subset. */
+const FONT_SOURCES = [
+  { pkg: "@fontsource-variable/commissioner", family: "Commissioner", css: ["wght.css"] },
+  { pkg: "@fontsource-variable/ibm-plex-sans", family: "IBM Plex Sans", css: ["wght.css", "wght-italic.css"] },
+  { pkg: "@fontsource-variable/jetbrains-mono", family: "JetBrains Mono", css: ["wght.css"] },
+];
+/* Unicode subsets to ship (browsers only fetch the ranges a page uses). */
+const FONT_SUBSETS = ["latin-ext", "greek-ext", "latin", "greek"];
 
 const TILE_SRC = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
 const TILE_SUBDOMAINS = ["a", "b", "c", "d"];
@@ -51,53 +65,48 @@ async function download(url, dest, opts = {}) {
 
 /* ------------------------------ fonts ------------------------------ */
 
-async function vendorFonts() {
-  const seen = new Set();
-  const blocks = [];
-  let done = 0;
-  let skipped = 0;
-  const css = await withRetry(() =>
-    fetch(FONTS_CSS_URL, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36",
-      },
-    })
-  ).then((r) => {
-    if (!r.ok) throw new Error(`HTTP ${r.status} fetching fonts css`);
-    return r.text();
-  });
-
-  const re = /(@font-face\s*\{[^}]+\})/g;
-  let m;
-  let totalFiles = 0;
-  while ((m = re.exec(css)) !== null) {
-    const block = m[1];
-    const srcMatch = block.match(/src:\s*(?:[^;]+?,\s*)?url\(([^)]+)\)\s*format\(['"]woff2['"]\)/);
-    if (!srcMatch) continue;
-    const remote = srcMatch[1];
-    if (seen.has(remote)) continue;
-    seen.add(remote);
-    const ext = remote.split("?")[0].split(".").pop() || "woff2";
-    const localName = `font-${createHash("sha1").update(remote).digest("hex").slice(0, 16)}.${ext}`;
-    const localBlock = block.replace(
-      /url\([^)]+\)\s*format\(['"]woff2['"]\)/,
-      `url("${localName}") format("woff2")`
-    );
-    blocks.push(localBlock);
-    totalFiles++;
-    try {
-      const created = await download(remote, join(FONT_DIR, localName), { skipIfExists: true });
-      created ? done++ : skipped++;
-      if (done % 10 === 0) console.log(`  fonts: ${done} downloaded, ${skipped} cached`);
-    } catch (err) {
-      console.error(`  fonts: FAILED ${remote} — ${err.message}`);
-    }
-  }
-  const cssOut = blocks.length ? blocks.join("\n\n") + "\n" : "";
+function vendorFonts() {
   mkdirSync(FONT_DIR, { recursive: true });
-  writeFileSync(join(FONT_DIR, "fonts.css"), cssOut);
-  console.log(`fonts: ${blocks.length} @font-face blocks, ${done} downloaded, ${skipped} cached -> public/fonts/fonts.css`);
+  const subsetRe = new RegExp(`-(${FONT_SUBSETS.join("|")})-`);
+  const blocks = [];
+  const keep = new Set(["fonts.css"]);
+
+  for (const src of FONT_SOURCES) {
+    const pkgDir = dirname(require.resolve(`${src.pkg}/package.json`));
+    const meta = require(`${src.pkg}/metadata.json`);
+    let count = 0;
+    for (const cssFile of src.css) {
+      const css = readFileSync(join(pkgDir, cssFile), "utf8");
+      const re = /@font-face\s*\{[^}]+\}/g;
+      let m;
+      while ((m = re.exec(css)) !== null) {
+        const block = m[0];
+        const file = block.match(/url\(\.\/files\/([^)]+\.woff2)\)/)?.[1];
+        if (!file) continue;
+        const subset = file.match(subsetRe)?.[1];
+        if (!subset) continue; // cyrillic / vietnamese — not needed for el/en
+        copyFileSync(join(pkgDir, "files", file), join(FONT_DIR, file));
+        keep.add(file);
+        const local = block
+          .replace(/font-family:\s*'[^']+'/, `font-family: '${src.family}'`)
+          .replace(/url\(\.\/files\/([^)]+)\)/, 'url("./$1")');
+        blocks.push(`/* ${src.family} · ${subset} · ${meta.version} */\n${local}`);
+        count++;
+      }
+    }
+    console.log(`  fonts: ${src.family} ${meta.version} — ${count} @font-face blocks`);
+  }
+
+  /* Drop leftovers from previous vendoring runs (e.g. other families). */
+  for (const f of readdirSync(FONT_DIR)) {
+    if (!keep.has(f)) unlinkSync(join(FONT_DIR, f));
+  }
+
+  const header =
+    "/* Self-hosted web fonts — generated by scripts/vendor-assets.mjs from the\n" +
+    "   @fontsource-variable packages pinned in package.json. Do not edit by hand. */\n\n";
+  writeFileSync(join(FONT_DIR, "fonts.css"), header + blocks.join("\n\n") + "\n");
+  console.log(`fonts: ${blocks.length} @font-face blocks -> public/fonts/fonts.css`);
 }
 
 /* ------------------------------ tiles ------------------------------ */
@@ -153,6 +162,8 @@ async function vendorTiles() {
   console.log(`tiles: ${total} tiles present in public/tiles`);
 }
 
-await vendorFonts();
-await vendorTiles();
+/* `--fonts` / `--tiles` limit the run to one asset class (default: both). */
+const only = process.argv.slice(2).filter((a) => a.startsWith("--"));
+if (!only.length || only.includes("--fonts")) vendorFonts();
+if (!only.length || only.includes("--tiles")) await vendorTiles();
 console.log("vendor-assets complete.");

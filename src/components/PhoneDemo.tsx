@@ -32,9 +32,9 @@ function PhoneHome({ dark = true }: { dark?: boolean }) {
       <div className={`mx-4 mt-4 overflow-hidden rounded-2xl border ${dark ? "border-cream/10" : "border-line bg-paper"}`}>
         <div className={`relative h-[110px] lg:h-[150px] ${dark ? "bg-[radial-gradient(120%_120%_at_30%_20%,#2E362E_0%,#1E221D_70%)]" : "bg-[radial-gradient(120%_120%_at_30%_20%,#E9EBE1_0%,#DADFCC_75%)]"}`}>
           {[
-            { x: "30%", y: "40%", c: "#E2470B" },
-            { x: "55%", y: "60%", c: dark ? "#FABF5D" : "#C67E1A" },
-            { x: "72%", y: "30%", c: "#0086EA" },
+            { x: "30%", y: "40%", c: "#C8502E" },
+            { x: "55%", y: "60%", c: dark ? "#E4B671" : "#B9843A" },
+            { x: "72%", y: "30%", c: "#0F80C5" },
           ].map((d, i) => (
             <span key={i} className="absolute h-2 w-2 rounded-full" style={{ left: d.x, top: d.y, background: d.c }} />
           ))}
@@ -87,9 +87,9 @@ function PhoneHome({ dark = true }: { dark?: boolean }) {
 function PhoneAlerts({ dark = true }: { dark?: boolean }) {
   const ph = useT().mobile.phone;
   const alerts = [
-    { c: "#E2470B", t: "78%", d: "Glyfada", w: "2′" },
-    { c: dark ? "#FABF5D" : "#C67E1A", t: "NTU ↑", d: "Ag. Georgios", w: "24′" },
-    { c: "#0086EA", t: "AQI 41", d: "Corfu", w: "3h" },
+    { c: "#C8502E", t: "78%", d: "Glyfada", w: "2′" },
+    { c: dark ? "#E4B671" : "#B9843A", t: "NTU ↑", d: "Ag. Georgios", w: "24′" },
+    { c: "#0F80C5", t: "AQI 41", d: "Corfu", w: "3h" },
   ];
   return (
     <div className={`flex h-full flex-col ${dark ? "text-cream" : "text-ink"}`}>

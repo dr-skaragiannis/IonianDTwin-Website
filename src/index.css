@@ -1,29 +1,37 @@
 @import "tailwindcss";
+/* Built HTML must not feed class candidates back into the next build. */
+@source not "../public";
+@source not "../page.html";
 
 @theme {
-  /* ── IonianDTwin · Monochrome (b&w) (default) ──────────────────────
-     Compile-time fallback; Palettes are swapped at runtime by
-     overriding these custom properties on <html>;
-     see src/i18n/palette.tsx. Dark sections stay on the brand
-     moss-charcoal #1E221D to match the logo tile.                   */
-  --color-cream: #FFFFFF;
-  --color-cream2: #F2F2F3;
-  --color-sand: #E5E5E7;
+  /* ── IonianDTwin · "Ionian" (default) ─────────────────────────────
+     Compile-time fallback; palettes are swapped at runtime by
+     overriding these custom properties on <html> — see
+     src/i18n/palette.tsx. Brand colours come from the logo:
+     terracotta #C8502E · sand #E4B671 · Ionian blue #0F80C5 on the
+     moss-charcoal tile #1E221D.                                        */
+  --color-cream: #F4F7F6;
+  --color-cream2: #EBF0EE;
+  --color-sand: #DFE9EC;
   --color-paper: #FFFFFF;
-  --color-ink: #000000;
-  --color-ink2: #101010;
-  --color-smoke: #2E2E31;
-  --color-fog: #6E6E73;
-  --color-line: #D9D9DC;
-  --color-clay: #0E0E10;
-  --color-claydeep: #000000;
-  --color-sea: #1A1A1C;
-  --color-seadeep: #000000;
-  --color-mist: #ECECED;
-  --color-gold: #55555A;
+  --color-ink: #1E221D;
+  --color-ink2: #161915;
+  --color-smoke: #444D49;
+  --color-fog: #6C7772;
+  --color-line: #D3DBD8;
+  --color-clay: #0F80C5;
+  --color-claydeep: #0B669E;
+  --color-sea: #C8502E;
+  --color-seadeep: #A63F22;
+  --color-mist: #BFDDF0;
+  --color-gold: #E4B671;
 
-  --font-display: "Jura", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Typography — self-hosted (public/fonts, see scripts/vendor-assets.mjs):
+     Commissioner (humanist sans by Kostas Bartsokas, Greek-native) for display,
+     IBM Plex Sans for body copy and JetBrains Mono for labels & data.
+     All three ship full Greek subsets.                                  */
+  --font-display: "Commissioner", "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -52,7 +60,7 @@ html {
 
 body {
   @apply bg-cream text-ink font-sans antialiased;
-  font-feature-settings: "ss01", "cv01";
+  font-feature-settings: "kern", "liga";
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
   /* Allow the fixed full-screen menu to lock scrolling */
@@ -135,8 +143,17 @@ video {
 /* ── Typography helpers ─────────────────────────────────────────────── */
 .display {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   font-weight: 600;
+  font-optical-sizing: auto;
+  font-feature-settings: "kern", "liga";
+}
+.display em,
+.display i {
+  /* Commissioner ships no italic: accent words are carried by colour
+     (text-clay) and the wave underline, not by a synthesised oblique. */
+  font-style: normal;
+  letter-spacing: -0.01em;
 }
 
 /* ── Balanced type scale ──────────────────────────────────────────────
@@ -596,4 +613,38 @@ html[data-palette="mono"] [class*="bg-[#232824]"] {
   --color-gold: #cfcfd2;
   --color-sea: #d9d9dc;
   --color-seadeep: #e8e8ea;
+}
+
+/* ── Ionian palette: accents inside dark surfaces ───────────────────
+   Ionian blue / terracotta / sand sit at mid luminance, so as *text*
+   inside the moss-charcoal sections they are re-declared one step
+   lighter for legibility. Elements that use the accent as a *fill*
+   behind light text (chips, CTAs, hover fills) pin the base tokens so
+   their cream labels stay readable.                                     */
+html[data-palette="ionian"] :is(
+  [class~="bg-ink"],
+  [class~="bg-ink2"],
+  [class*="bg-ink2/"],
+  [class~="bg-seadeep"],
+  [class*="bg-[#151915]"],
+  [class*="bg-[#1E221D]"],
+  [class*="bg-[#262C25]"],
+  [class*="bg-[#232824]"]
+):not(a):not(button) {
+  --color-clay: #4FA9E3;
+  --color-claydeep: #7FC1EC;
+  --color-sea: #E4886A;
+  --color-seadeep: #F0A88F;
+  --color-gold: #EAC488;
+}
+html[data-palette="ionian"] :is(
+  [class~="bg-clay"],
+  [class~="hover:bg-clay"],
+  [class~="group-hover:bg-clay"],
+  [class~="hover:bg-claydeep"],
+  [class~="bg-claydeep"],
+  .btn-primary
+) {
+  --color-clay: #0F80C5;
+  --color-claydeep: #0B669E;
 }

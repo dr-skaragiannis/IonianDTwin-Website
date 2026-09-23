@@ -413,11 +413,12 @@ export function ArrowLink({
 }
 
 /* ── Wordmark ─────────────────────────────────────────────────────────
-   Brand signal waves — always fixed, independent of palette:
-   #E2470B signal orange / #FABF5D amber / #0086EA azure
+   Brand waves — always fixed, independent of palette (top → bottom):
+   #C8502E terracotta / #E4B671 sand / #0F80C5 Ionian blue
    on deep moss-charcoal #1E221D. Even in Monochrome mode the mark
-   keeps its brand colours.                                              */
-export const BRAND_WAVES = ["#E2470B", "#FABF5D", "#0086EA"] as const;
+   keeps its brand colours. Keep in sync with public/favicon.svg and
+   scripts/generate-route-shells.mjs.                                   */
+export const BRAND_WAVES = ["#C8502E", "#E4B671", "#0F80C5"] as const;
 export const BRAND_INK = "#1E221D";
 
 export function LogoMark({

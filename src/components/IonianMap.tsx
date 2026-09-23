@@ -20,9 +20,9 @@ export interface MapPoint {
 }
 
 export function dotColor(i: number) {
-  if (i >= 0.75) return "#E2470B";
-  if (i >= 0.5) return "#FABF5D";
-  return "#0086EA";
+  if (i >= 0.75) return "#C8502E";
+  if (i >= 0.5) return "#E4B671";
+  return "#0F80C5";
 }
 
 /**

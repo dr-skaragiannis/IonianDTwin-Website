@@ -31,12 +31,12 @@ function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: s
         />
         <defs>
           <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#0086EA" />
-            <stop offset="55%" stopColor="#FABF5D" />
-            <stop offset="100%" stopColor="#E2470B" />
+            <stop offset="0%" stopColor="#0F80C5" />
+            <stop offset="55%" stopColor="#E4B671" />
+            <stop offset="100%" stopColor="#C8502E" />
           </linearGradient>
         </defs>
-        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Jura, sans-serif" fill="#1E221D">
+        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Commissioner, 'IBM Plex Sans', sans-serif" fill="#1E221D">
           {value}
         </text>
         <text x="160" y="160" textAnchor="middle" fontSize="12" letterSpacing="2.5" fontFamily="JetBrains Mono, monospace" fill="#7B8177">
@@ -44,9 +44,9 @@ function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: s
         </text>
       </svg>
       <div className="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-1 font-mono text-[9px] uppercase tracking-[0.12em] text-fog sm:text-[9.5px] sm:tracking-[0.14em]">
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#0086EA]" /> {labels.low}</span>
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#FABF5D]" /> {labels.watch}</span>
-        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#E2470B]" /> {labels.alert}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#0F80C5]" /> {labels.low}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#E4B671]" /> {labels.watch}</span>
+        <span className="flex items-center gap-1.5"><span className="h-1.5 w-4 rounded-full bg-[#C8502E]" /> {labels.alert}</span>
       </div>
     </div>
   );

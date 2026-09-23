@@ -9,9 +9,9 @@ const CROWD_IMG = "./images/crowd.jpg";
 /** Higher score = stronger sustainability */
 function scoreColor(s: number) {
   if (s >= 75) return "#2F7D4A";
-  if (s >= 60) return "#0086EA";
-  if (s >= 50) return "#FABF5D";
-  return "#E2470B";
+  if (s >= 60) return "#0F80C5";
+  if (s >= 50) return "#E4B671";
+  return "#C8502E";
 }
 
 export default function Challenge() {
