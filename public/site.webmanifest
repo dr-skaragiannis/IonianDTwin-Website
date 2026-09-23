@@ -6,7 +6,7 @@
   "start_url": "https://ioniandtwin.di.ionio.gr/",
   "scope": "https://ioniandtwin.di.ionio.gr/",
   "display": "standalone",
-  "background_color": "#F7F5EF",
+  "background_color": "#F4F7F6",
   "theme_color": "#1E221D",
   "lang": "el",
   "dir": "ltr",

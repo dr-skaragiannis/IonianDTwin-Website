@@ -10,15 +10,15 @@
      src/i18n/palette.tsx. Brand colours come from the logo:
      terracotta #C8502E · sand #E4B671 · Ionian blue #0F80C5 on the
      moss-charcoal tile #1E221D.                                        */
-  --color-cream: #F7F5EF;
-  --color-cream2: #EFECE4;
-  --color-sand: #EAE3D3;
+  --color-cream: #F4F7F6;
+  --color-cream2: #EBF0EE;
+  --color-sand: #DFE9EC;
   --color-paper: #FFFFFF;
   --color-ink: #1E221D;
   --color-ink2: #161915;
-  --color-smoke: #4A4F47;
-  --color-fog: #737870;
-  --color-line: #DED9CD;
+  --color-smoke: #444D49;
+  --color-fog: #6C7772;
+  --color-line: #D3DBD8;
   --color-clay: #0F80C5;
   --color-claydeep: #0B669E;
   --color-sea: #C8502E;
@@ -27,10 +27,10 @@
   --color-gold: #E4B671;
 
   /* Typography — self-hosted (public/fonts, see scripts/vendor-assets.mjs):
-     Literata (editorial serif, optical sizes, true italics) for display,
+     Commissioner (humanist sans by Kostas Bartsokas, Greek-native) for display,
      IBM Plex Sans for body copy and JetBrains Mono for labels & data.
      All three ship full Greek subsets.                                  */
-  --font-display: "Literata", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "Commissioner", "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -143,14 +143,16 @@ video {
 /* ── Typography helpers ─────────────────────────────────────────────── */
 .display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
-  font-weight: 500;
+  letter-spacing: -0.025em;
+  font-weight: 600;
   font-optical-sizing: auto;
   font-feature-settings: "kern", "liga";
 }
 .display em,
 .display i {
-  /* Literata has true italics — let accent words breathe a little */
+  /* Commissioner ships no italic: accent words are carried by colour
+     (text-clay) and the wave underline, not by a synthesised oblique. */
+  font-style: normal;
   letter-spacing: -0.01em;
 }
 

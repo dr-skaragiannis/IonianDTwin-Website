@@ -385,7 +385,7 @@ export default function DashboardMock() {
                   textAnchor="middle"
                   fontSize="28"
                   fontWeight="600"
-                  fontFamily="Literata, Georgia, serif"
+                  fontFamily="Commissioner, 'IBM Plex Sans', sans-serif"
                   fill="#ffffff"
                 >
                   {Math.round(gauge)}

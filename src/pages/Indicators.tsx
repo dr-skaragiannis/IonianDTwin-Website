@@ -36,7 +36,7 @@ function CompositeGauge({ labels }: { labels: { g: string; low: string; watch: s
             <stop offset="100%" stopColor="#C8502E" />
           </linearGradient>
         </defs>
-        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Literata, Georgia, serif" fill="#1E221D">
+        <text x="160" y="132" textAnchor="middle" fontSize="58" fontWeight="500" fontFamily="Commissioner, 'IBM Plex Sans', sans-serif" fill="#1E221D">
           {value}
         </text>
         <text x="160" y="160" textAnchor="middle" fontSize="12" letterSpacing="2.5" fontFamily="JetBrains Mono, monospace" fill="#7B8177">

@@ -1,7 +1,7 @@
 /* Vendors third-party runtime assets locally so the site deploys fully offline.
  * Run: node scripts/vendor-assets.mjs [--fonts] [--tiles]
  * Produces:
- *   1. Web fonts (Literata, IBM Plex Sans, JetBrains Mono) -> public/fonts/fonts.css + *.woff2
+ *   1. Web fonts (Commissioner, IBM Plex Sans, JetBrains Mono) -> public/fonts/fonts.css + *.woff2
  *      Copied from the pinned `@fontsource-variable/*` devDependencies (npm), so the
  *      exact font build is locked by package-lock.json and no request to Google Fonts
  *      is ever needed — at build time or at runtime.
@@ -20,12 +20,12 @@ const TILE_DIR = join(pub, "tiles");
 const require = createRequire(import.meta.url);
 
 /* Typography system (see src/index.css @theme):
- *   display  → Literata        (variable: wght 200–900 + opsz 7–72, true italics)
+ *   display  → Commissioner    (variable: wght 100–900; Greek-native humanist sans)
  *   body     → IBM Plex Sans   (variable: wght 100–700, italics)
  *   labels   → JetBrains Mono  (variable: wght 100–800)
  * The site is Greek-first, so every family must ship a Greek subset. */
 const FONT_SOURCES = [
-  { pkg: "@fontsource-variable/literata", family: "Literata", css: ["standard.css", "standard-italic.css"] },
+  { pkg: "@fontsource-variable/commissioner", family: "Commissioner", css: ["wght.css"] },
   { pkg: "@fontsource-variable/ibm-plex-sans", family: "IBM Plex Sans", css: ["wght.css", "wght-italic.css"] },
   { pkg: "@fontsource-variable/jetbrains-mono", family: "JetBrains Mono", css: ["wght.css"] },
 ];

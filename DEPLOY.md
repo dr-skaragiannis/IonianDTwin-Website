@@ -28,10 +28,10 @@ back to `/` automatically.
   `#0F80C5` on the moss-charcoal tile `#1E221D`. Defined once in
   `src/components/ui.tsx` (`BRAND_WAVES` / `BRAND_INK`), mirrored in
   `public/favicon.svg` and `scripts/generate-route-shells.mjs`.
-- Default palette **"Ionian"** (`src/i18n/palette.tsx`): bone-white surfaces,
-  moss-charcoal ink, Ionian blue as the primary accent, terracotta and sand as
+- Default palette **"Ionian"** (`src/i18n/palette.tsx`): cool salt-white
+  surfaces, moss-charcoal ink, Ionian blue as the primary accent, terracotta and sand as
   secondary accents. Monochrome and Ionian Cyan remain selectable.
-- Typography (`src/index.css`): Literata (display), IBM Plex Sans (body),
+- Typography (`src/index.css`): Commissioner (display), IBM Plex Sans (body),
   JetBrains Mono (labels) — self-hosted from `public/fonts/`, all with Greek
   subsets. Fonts are copied from the pinned `@fontsource-variable/*` packages
   by `node scripts/vendor-assets.mjs --fonts`; no Google Fonts request is made.

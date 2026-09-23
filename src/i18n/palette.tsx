@@ -10,8 +10,8 @@ import {
 
 /* ── Palette definitions ──────────────────────────────────────────────
    Three themes, cycled by the swap button in this order:
-   · "ionian" — Ionian (default): warm bone surfaces, moss-charcoal ink
-                and the three brand colours of the logo waves
+   · "ionian" — Ionian (default): cool salt-white surfaces, moss-charcoal
+                ink and the three brand colours of the logo waves
    · "mono"   — Monochrome (black & white)
    · "ocean"  — Ionian Cyan (cool blue)                                   */
 export interface Palette {
@@ -51,24 +51,25 @@ export const BRAND = {
   ink: "#1E221D",
 } as const;
 
-/* Default theme — "Ionian". Bone-white surfaces with a faint warm cast,
-   moss-charcoal ink taken from the logo tile, Ionian blue as the primary
-   accent and terracotta / sand as secondary accents. Data-viz figures
+/* Default theme — "Ionian". Salt-white surfaces with a faint cool, sea-glass
+   cast (olive-grove greys rather than warm cream), moss-charcoal ink taken
+   from the logo tile, Ionian blue as the primary accent and terracotta /
+   sand as secondary accents. Data-viz figures
    (charts, dashboards, map dots) use the same three brand colours in every
    theme; only the interface chrome changes when the palette is swapped. */
 const IONIAN: Palette = {
   id: "ionian",
   label: "Ionian",
   swatch: BRAND.blue,
-  cream: "#F7F5EF",
-  cream2: "#EFECE4",
-  sand: "#EAE3D3",
+  cream: "#F4F7F6",
+  cream2: "#EBF0EE",
+  sand: "#DFE9EC",
   paper: "#FFFFFF",
   ink: BRAND.ink,
   ink2: "#161915",
-  smoke: "#4A4F47",
-  fog: "#737870",
-  line: "#DED9CD",
+  smoke: "#444D49",
+  fog: "#6C7772",
+  line: "#D3DBD8",
   clay: BRAND.blue,
   claydeep: "#0B669E",
   sea: BRAND.terracotta,
